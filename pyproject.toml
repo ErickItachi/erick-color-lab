@@ -27,5 +27,5 @@ where = ["color-engine"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "--import-mode=importlib -q"
-pythonpath = ["color-engine"]
+pythonpath = ["color-engine", "tests"]
 filterwarnings = ["ignore::DeprecationWarning", "ignore::RuntimeWarning:colour.*"]

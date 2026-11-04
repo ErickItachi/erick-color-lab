@@ -5,6 +5,7 @@
   "kind": "camera_log",
   "transfer": "apple_log",
   "gamut": "rec2020",
+  "gamut_compression": "aces_rgc_1.3",
   "file_token": "APPLELOG_BT2020",
   "export_folder": "apple-log",
   "signal": {
@@ -23,5 +24,6 @@
     "Apple Inc., Apple Log Profile White Paper (2023)",
     "ITU-R BT.2020-2"
   ],
-  "enabled": true
+  "enabled": true,
+  "input_stage": "decode log -> linear camera gamut -> AP1 (CAT02) -> ACES 1.3 Reference Gamut Compression"
 }

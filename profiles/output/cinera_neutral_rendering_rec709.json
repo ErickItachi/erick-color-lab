@@ -10,20 +10,6 @@
     "toe": 0.012,
     "white_stops": 6.5
   },
-  "scene_gamut_compression": {
-    "method": "ACES 1.3 Reference Gamut Compression",
-    "threshold": [
-      0.815,
-      0.803,
-      0.88
-    ],
-    "limit": [
-      1.147,
-      1.264,
-      1.312
-    ],
-    "power": 1.2
-  },
   "display_gamut_compression": {
     "method": "same algorithm, AP1 -> Rec.709",
     "threshold": [
@@ -32,12 +18,27 @@
       0.85
     ],
     "limit": "derived from the AP1 boundary (gamut/compression.py::boundary_limits)",
-    "power": 1.2
+    "power": 1.2,
+    "applies_to": "camera and working-space sources"
   },
   "display": {
     "primaries": "rec709",
     "white": "D65",
     "eotf": "ITU-R BT.1886, gamma 2.4, Lb = 0"
   },
-  "notes": "Tone scale form after the open-source ACES 2.0 tonescale (Siragusano); grey_out, contrast, toe and white_stops are CINERA design parameters, not standard constants."
+  "notes": "Tone scale form after the open-source ACES 2.0 tonescale (Siragusano); grey_out, contrast, toe and white_stops are CINERA design parameters, not standard constants. Scene gamut compression (ACES 1.3 RGC) is applied in the camera input stage, not here.",
+  "display_gamut_compression_rec709_source": {
+    "method": "same algorithm, gentle pair for Rec.709 sources (exact inverse used by the Rec.709 profile)",
+    "threshold": [
+      0.95,
+      0.95,
+      0.95
+    ],
+    "limit": [
+      1.05,
+      1.05,
+      1.05
+    ],
+    "power": 1.2
+  }
 }

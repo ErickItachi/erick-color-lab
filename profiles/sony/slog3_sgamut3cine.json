@@ -5,6 +5,7 @@
   "kind": "camera_log",
   "transfer": "sony_slog3",
   "gamut": "sgamut3cine",
+  "gamut_compression": "aces_rgc_1.3",
   "file_token": "SLOG3_SGAMUT3CINE",
   "export_folder": "sony-slog3",
   "signal": {
@@ -22,5 +23,6 @@
   "references": [
     "Sony, Technical Summary for S-Gamut3.Cine/S-Log3 and S-Gamut3/S-Log3 (2014)"
   ],
-  "enabled": true
+  "enabled": true,
+  "input_stage": "decode log -> linear camera gamut -> AP1 (CAT02) -> ACES 1.3 Reference Gamut Compression"
 }

@@ -5,7 +5,8 @@ Operators run in three domains, in this fixed order:
 
 A. scene-linear AP1      exposure, white balance, black density, colour matrix
 B. ACEScct (log)         contrast/pivot, lift/gamma/gain, tonal balance
-                         (shadows / midtones / highlights), RGB curves,
+                         (shadows / midtones / highlights; attenuated on skin
+                         by skin.protect), RGB curves,
                          highlight compression (hue-preserving shoulder)
 C. Oklab (perceptual)    colour separation, Hue vs Hue / Sat / Lum,
                          saturation mapping (global, shadows, highlights,
@@ -27,6 +28,12 @@ GREY = 0.18
 CCT_BLACK = float(acescct_encode(0.0))            # ACEScct of scene 0.0 (0.0729)
 CCT_WHITE = float(acescct_encode(GREY * 2 ** 6.5))  # LGG white reference (+6.5 stops)
 L_GREY = float(np.cbrt(GREY))                     # Oklab L of an 18 % neutral
+# Floor for the chroma/lightness ratio C/L: Oklab L of a neutral 6 stops below
+# grey. Keeps every ratio-based mask well-conditioned near black (sensor
+# noise / sub-black codes) where C/L would otherwise diverge.
+L_FLOOR = float(np.cbrt(GREY * 2.0 ** -6))
+DEEP_SHADOW_FADE = (-7.5, -5.0)  # stops: perceptual operations fade in over this range
+BLACK_NEUTRAL_FADE = (-9.0, -6.5)  # stops: tonal-balance tints fade in over this range
 _W_AP1 = cs.luminance_weights("ap1")
 _M_AP1_709 = cs.rgb_to_rgb_matrix("ap1", "rec709")
 _M_709_AP1 = cs.rgb_to_rgb_matrix("rec709", "ap1")
@@ -45,20 +52,37 @@ def white_balance_gains(warmth: float, tint: float) -> np.ndarray:
 
 
 def black_density(x, offset: float):
+    """offset < 0: smooth density on luminance, Y' = Y^2 / (Y + d), applied as a
+    common RGB scale (hue and saturation preserved — rich blacks, no hue skew).
+    offset > 0: neutral matte lift (x + offset)."""
     if offset == 0.0:
         return x
     if offset > 0.0:
         return x + offset
     d = -offset
-    with np.errstate(divide="ignore", invalid="ignore"):
-        return np.where(x > 0.0, x * x / (x + d), x)
+    Y = np.maximum(x @ _W_AP1, 0.0)  # non-physical Y <= 0 -> k = 0 (continuous at 0)
+    k = Y / (Y + d)
+    return x * k[..., None]
 
 
 # ---------------------------------------------------------------------------
 # B. ACEScct
 # ---------------------------------------------------------------------------
-def contrast(cct, amount: float, pivot: float):
-    return pivot + (cct - pivot) * amount
+def contrast(cct, amount: float, pivot: float, hue_preservation: float = 0.0):
+    """Log contrast around ``pivot``. ``hue_preservation`` blends from
+    per-channel contrast (0, the classic log grade — skews hue with exposure)
+    to luminance contrast with constant RGB ratios (1, hue/chroma preserved)."""
+    per_channel = pivot + (cct - pivot) * amount
+    if hue_preservation <= 0.0:
+        return per_channel
+    lin = acescct_decode(cct)
+    Y = np.maximum(lin @ _W_AP1, 0.0)
+    cy = acescct_encode(Y)
+    Y2 = acescct_decode(pivot + (cy - pivot) * amount)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        k = np.where(Y > 0.0, Y2 / np.maximum(Y, 1e-12), 0.0)
+    ratio_kept = acescct_encode(lin * np.maximum(k, 0.0)[..., None])
+    return per_channel + hue_preservation * (ratio_kept - per_channel)
 
 
 def lift_gamma_gain(cct, p: dict):
@@ -81,14 +105,22 @@ def tonal_masks(lin_ap1, shadow_end, highlight_start, softness):
     return sh, mid, hi
 
 
-def tonal_balance(cct, lin_ap1, p: dict):
+def tonal_balance(cct, lin_ap1, p: dict, weight=None):
+    """``weight`` (0..1 per pixel) attenuates the offsets — used by skin
+    protection so split-toning never tints skin."""
     offs = [np.asarray(p[k], dtype=np.float64) for k in ("shadows", "midtones", "highlights")]
     if all(np.allclose(o, 0) for o in offs):
         return cct
     if p["preserve_luma"]:
         offs = [o - float(o @ _W_AP1) for o in offs]
     sh, mid, hi = tonal_masks(lin_ap1, p["shadow_end"], p["highlight_start"], p["softness"])
-    return cct + sh[..., None] * offs[0] + mid[..., None] * offs[1] + hi[..., None] * offs[2]
+    delta = sh[..., None] * offs[0] + mid[..., None] * offs[1] + hi[..., None] * offs[2]
+    # tints fade out toward black: shadows are tinted, pure black stays neutral
+    e = _stops(np.maximum(lin_ap1 @ _W_AP1, 0.0))
+    delta = delta * smoothstep(BLACK_NEUTRAL_FADE[0], BLACK_NEUTRAL_FADE[1], e)[..., None]
+    if weight is not None:
+        delta = delta * weight[..., None]
+    return cct + delta
 
 
 def rgb_curves(cct, p: dict):
@@ -128,6 +160,14 @@ def skin_mask(h, ratio, center, width):
     return m_h * m_r
 
 
+def skin_weight(lin_ap1, skin: dict):
+    """Skin mask evaluated on scene-linear AP1 (Oklab hue and C/L ratio)."""
+    lab = cs.rec709_linear_to_oklab(cs.apply_matrix(lin_ap1, _M_AP1_709))
+    L, C, h = cs.oklab_to_lch(lab)
+    ratio = C / np.maximum(L, L_FLOOR)
+    return skin_mask(h, ratio, skin["hue_center"], skin["hue_width"])
+
+
 def perceptual(lin_ap1, p: dict):
     sat, skin, sep = p["saturation"], p["skin"], p["color_separation"]
     hue_curves = [p["hue_vs_hue"], p["hue_vs_sat"], p["hue_vs_lum"]]
@@ -138,45 +178,57 @@ def perceptual(lin_ap1, p: dict):
     )
     if neutral and sat["chroma_knee"] is None:
         return lin_ap1
-    lab = cs.rec709_linear_to_oklab(cs.apply_matrix(lin_ap1, _M_AP1_709))
+    rgb709 = cs.apply_matrix(lin_ap1, _M_AP1_709)
+    lab = cs.rec709_linear_to_oklab(rgb709)
     L, C, h = cs.oklab_to_lch(lab)
+    ratio = C / np.maximum(L, L_FLOOR)
+    # Validity: fade every perceptual operation out where a cone response
+    # approaches zero (edge of the physically meaningful domain), avoiding
+    # the cube-root singularity of Oklab and keeping the transform smooth.
+    lms = cs.apply_matrix(rgb709, cs._OKLAB_M1)
     with np.errstate(divide="ignore", invalid="ignore"):
-        ratio = np.where(L > 1e-6, C / np.maximum(L, 1e-6), 0.0)
+        q = np.where(np.max(np.abs(lms), -1) > 0, np.min(lms, -1) / np.max(np.abs(lms), -1), 0.0)
+    w_valid = smoothstep(0.0, 0.04, q)
+    # Deep-shadow fade: below ~-5 stops colour estimates are dominated by
+    # noise / sub-black codes; perceptual edits fade out smoothly so luminance
+    # stays monotone toward black.
+    e = 3.0 * np.log2(np.maximum(L, 1e-6) / L_GREY)  # stops relative to grey
+    w_valid = w_valid * smoothstep(DEEP_SHADOW_FADE[0], DEEP_SHADOW_FADE[1], e)
 
     if neutral:
         dh = np.zeros_like(h)
         S = np.ones_like(h)
         M = np.ones_like(h)
     else:
-        w_c = smoothstep(0.01, 0.06, ratio)  # keep neutrals/near-neutrals untouched by hue ops
+        w_c = smoothstep(0.01, 0.06, ratio) * w_valid  # neutrals and out-of-domain colours untouched
         m_skin = skin_mask(h, ratio, skin["hue_center"], skin["hue_width"])
         protect = 1.0 - skin["protect"] * m_skin
+        g = w_valid  # global operations also fade out of the valid domain
 
         dh = -sep["amount"] * np.sin(2.0 * np.radians(h - sep["axis_hue"]))
         dh = dh + PeriodicCurve(p["hue_vs_hue"], 0.0)(h)
-        dh = dh * w_c * protect + skin["pull"] * m_skin * (-_wrap(h - skin["hue_center"]))
+        dh = dh * w_c * protect + skin["pull"] * m_skin * w_valid * (-_wrap(h - skin["hue_center"]))
 
-        e = 3.0 * np.log2(np.maximum(L, 1e-6) / L_GREY)  # stops relative to grey
         tb = p["tonal_balance"]
         sh = smoothstep(tb["shadow_end"] + tb["softness"], tb["shadow_end"] - tb["softness"], e)
         hi = smoothstep(tb["highlight_start"] - tb["softness"], tb["highlight_start"] + tb["softness"], e)
         s_tone = (1 - sh - hi).clip(0, 1) + sh * sat["shadows"] + hi * sat["highlights"]
         s_hue = PeriodicCurve(p["hue_vs_sat"], 1.0)(h)
         s_hue = 1.0 + (s_hue - 1.0) * w_c
-        S = np.maximum(sat["global"] * s_tone * s_hue, 0.0) ** protect
+        S = np.maximum(sat["global"] * s_tone * s_hue, 0.0) ** (protect * g)
 
         M = PeriodicCurve(p["hue_vs_lum"], 1.0)(h)
-        M = np.maximum(1.0 + (M - 1.0) * w_c, 1e-3) ** protect
+        M = np.maximum(1.0 + (M - 1.0) * w_c, 1e-3) ** (protect * g)
 
     C2 = C * S
     C3 = C2
     if sat["chroma_knee"] is not None:
         # soft chroma limit on the exposure-invariant ratio C/L (tanh shoulder, C1)
         knee, lim = sat["chroma_knee"], sat["chroma_limit"]
-        with np.errstate(divide="ignore", invalid="ignore"):
-            r2 = np.where(L > 1e-6, C2 / np.maximum(L, 1e-6), 0.0)
+        Lf = np.maximum(L, L_FLOOR)
+        r2 = C2 / Lf
         r3 = knee + (lim - knee) * np.tanh((r2 - knee) / (lim - knee))
-        C3 = np.where(r2 > knee, r3 * np.maximum(L, 1e-6), C2)
+        C3 = np.where(r2 > knee, C2 + (r3 * Lf - C2) * w_valid, C2)
     L2 = L * np.cbrt(M)
     lab2 = cs.lch_to_oklab(L2, C3, h + dh)
     return cs.apply_matrix(cs.oklab_to_rec709_linear(lab2), _M_709_AP1)
@@ -202,9 +254,12 @@ def apply_look(lin_ap1: np.ndarray, look: Look) -> np.ndarray:
     cct = acescct_encode(x)
     c = p["contrast"]
     if c["amount"] != 1.0:
-        cct = contrast(cct, c["amount"], c["pivot"])
+        cct = contrast(cct, c["amount"], c["pivot"], c["hue_preservation"])
     cct = lift_gamma_gain(cct, p["lift_gamma_gain"])
-    cct = tonal_balance(cct, acescct_decode(cct), p["tonal_balance"])
+    tb_weight = None
+    if p["skin"]["protect"] > 0:
+        tb_weight = 1.0 - p["skin"]["protect"] * skin_weight(x, p["skin"])
+    cct = tonal_balance(cct, acescct_decode(cct), p["tonal_balance"], tb_weight)
     cct = rgb_curves(cct, p["curves"])
     x = acescct_decode(cct)
     hc = p["highlight_compression"]

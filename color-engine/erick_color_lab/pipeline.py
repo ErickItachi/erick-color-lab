@@ -3,7 +3,7 @@
 Exactly one technical path per profile kind — no technical step is ever
 applied twice:
 
-camera_log      signal --decode--> scene AP1 --look--> rendering --> Rec.709
+camera_log      signal --decode--> camera gamut --> AP1 --RGC--> scene AP1 --look--> rendering --> Rec.709
 display_rec709  Rec.709 --rendering⁻¹--> scene AP1 --look--> rendering --> Rec.709
 working_space   ACEScct --decode--> scene AP1 --look--> encode --> ACEScct (LMT)
 """
@@ -52,18 +52,18 @@ class Transform:
         graded = apply_look(scene, self.look)
         if self.profile.kind == "working_space":
             return acescct_encode(graded)
-        return self.rendering.forward(graded, scene_compression=self.scene_compression)
+        return self.rendering.forward(graded, source=self.render_source)
 
     @property
-    def scene_compression(self) -> bool:
-        return self.profile.kind != "display_rec709"
+    def render_source(self) -> str:
+        return "rec709" if self.profile.kind == "display_rec709" else "scene"
 
     def stats(self, signal: np.ndarray) -> dict:
         scene = self.to_scene(np.asarray(signal, dtype=np.float64))
         graded = apply_look(scene, self.look)
         if self.profile.kind == "working_space":
             return {"pre_clip_min": float(graded.min()), "pre_clip_max": float(graded.max()), "out_of_range_fraction": 0.0}
-        return self.rendering.forward(graded, return_stats=True, scene_compression=self.scene_compression)[1]
+        return self.rendering.forward(graded, return_stats=True, source=self.render_source)[1]
 
 
 def preview_display(acescct_values: np.ndarray, rendering: Rendering) -> np.ndarray:

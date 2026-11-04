@@ -22,12 +22,13 @@ NEUTRAL_PARAMETERS = {
     "exposure": 0.0,                         # stops (linear gain 2**exposure)
     "white_balance": {"warmth": 0.0,         # log2 R/B gain ratio (+ = warmer)
                       "tint": 0.0},          # log2 G gain (+ = greener, - = magenta)
-    "black_offset": 0.0,                     # <0 smooth density x^2/(x+d); >0 matte offset (scene-linear)
+    "black_offset": 0.0,                     # <0 smooth luminance density Y^2/(Y+d) (hue-preserving); >0 matte offset
     "color_matrix": [[1.0, 0.0, 0.0],        # linear AP1 3x3, rows must sum to 1 (keeps neutrals)
                      [0.0, 1.0, 0.0],
                      [0.0, 0.0, 1.0]],
     # --- ACEScct (log) operations --------------------------------------------
-    "contrast": {"amount": 1.0, "pivot": 0.4136},   # y = pivot + (x - pivot) * amount ; 0.4136 = 18 % grey
+    "contrast": {"amount": 1.0, "pivot": 0.4136,    # y = pivot + (x - pivot) * amount ; 0.4136 = 18 % grey
+                 "hue_preservation": 0.0},          # 0 per-channel .. 1 luminance contrast, constant RGB ratios
     "lift_gamma_gain": {
         "lift": [0.0, 0.0, 0.0], "gamma": [1.0, 1.0, 1.0], "gain": [1.0, 1.0, 1.0],
         "master_lift": 0.0, "master_gamma": 1.0, "master_gain": 1.0,
