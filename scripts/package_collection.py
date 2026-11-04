@@ -26,7 +26,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "color-engine"))
 
-from erick_color_lab.brand import BRAND, COLLECTIONS  # noqa: E402
+from erick_color_lab.brand import COLLECTIONS  # noqa: E402
 
 FOLDERS = {
     "rec709": "Rec709",
@@ -35,39 +35,14 @@ FOLDERS = {
     "canon-log3": "Canon Log 3",
     "creative-only": "Creative Only (ACEScct)",
 }
-DOCS = ["docs/INSTALLATION.md", "docs/COMPATIBILITY.md", "docs/LOOKS.md", "docs/COLOR_SCIENCE.md", "CHANGELOG.md"]
-FORBIDDEN = re.compile(r"la\s*creme|fjr|private/|reference-private|third-party pack", re.IGNORECASE)
-
-README = """{name} — {tagline}
-{signature}
-
-Versão da coleção: {version}
-
-CONTEÚDO
-  LUTs/Rec709                      Rec.709 -> Rec.709 (para footage Rec.709)
-  LUTs/Sony S-Log3                 S-Log3 / S-Gamut3.Cine e S-Gamut3 -> Rec.709
-  LUTs/Apple Log                   Apple Log / BT.2020 -> Rec.709
-  LUTs/Canon Log 3                 Canon Log 3 / Cinema Gamut -> Rec.709
-  LUTs/Creative Only (ACEScct)     ACEScct -> ACEScct (somente o look, sem conversão técnica)
-  Previews/                        prévias das 15 variações
-  Docs/                            instalação, compatibilidade, looks, color science, histórico
-
-LOOKS
-  01 SIGNATURE · 02 GOLDEN · 03 OLIVE · 04 BLUE HOUR · 05 ROMANCE
-  Variações: SOFT · STANDARD · RICH    Resoluções: 33 e 65 (65 = máxima precisão)
-
-NOME DOS ARQUIVOS
-  CINERA_<NN>_<LOOK>_<VARIAÇÃO>_<ENTRADA>_TO_<SAÍDA>_<TAMANHO>.cube
-
-IMPORTANTE
-  - LUTs de câmera esperam o clip em Data Levels = Auto/Video (padrão do Resolve e do Premiere).
-  - Não combine um LUT "Camera to Rec.709" com outra conversão da mesma câmera.
-  - Faça exposição e balanço de branco antes do LUT.
-  Detalhes: Docs/INSTALLATION.md e Docs/COMPATIBILITY.md
-
-Integridade: MANIFEST.json traz o SHA-256 de cada arquivo.
-(c) Erick Filmes. Uso sujeito a LICENCA.txt.
-"""
+# Customer-facing documents only (internal engineering docs are never shipped)
+CUSTOMER_DOCS = {
+    "docs/customer/LEIA-ME.md": "00 - LEIA-ME.md",
+    "docs/customer/GUIA_DE_INSTALACAO.md": "01 - Guia de Instalacao.md",
+    "docs/customer/CATALOGO_DOS_LOOKS.md": "02 - Catalogo dos Looks.md",
+    "docs/customer/LICENCA_DE_USO.md": "03 - Licenca de Uso.md",
+}
+FORBIDDEN = re.compile(r"la\s*creme|fjr|private/|reference-private|third-party pack|rascunho", re.IGNORECASE)
 
 
 def sha(p: Path) -> str:
@@ -77,7 +52,9 @@ def sha(p: Path) -> str:
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--collection", default="cinera-vol-01")
-    ap.add_argument("--zip", action="store_true")
+    ap.add_argument("--zip", action="store_true", help="one zip with the whole package")
+    ap.add_argument("--split-zips", action="store_true",
+                    help="one zip per LUT folder + Previews (for uploading folder by folder)")
     args = ap.parse_args(argv)
 
     col = COLLECTIONS[args.collection]
@@ -114,14 +91,14 @@ def main(argv=None):
         for png in sorted((REPO / "previews" / d).glob("*.png")):
             (root / "Previews").mkdir(parents=True, exist_ok=True)
             shutil.copy2(png, root / "Previews" / png.name)
-    (root / "Docs").mkdir(parents=True, exist_ok=True)
-    for doc in DOCS:
-        shutil.copy2(REPO / doc, root / "Docs" / Path(doc).name)
-    (root / "LEIA-ME.txt").write_text(README.format(name=col["name"], tagline=BRAND["tagline"],
-                                                    signature=BRAND["signature"], version=col["version"]), encoding="utf-8")
-    lic = (REPO / "LICENSE.md").read_text(encoding="utf-8")
-    (root / "LICENCA.txt").write_text(lic, encoding="utf-8")
+    for src, dst in CUSTOMER_DOCS.items():
+        shutil.copy2(REPO / src, root / dst)
     (root / "MANIFEST.json").write_text(json.dumps(pkg_manifest, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    # one manifest per LUT folder, so each folder can be delivered on its own
+    for sub in (root / "LUTs").iterdir():
+        part = {"collection": col["name"], "version": col["version"],
+                "files": {Path(k).name: v for k, v in pkg_manifest["files"].items() if Path(k).parent.name == sub.name}}
+        (sub / "MANIFEST.json").write_text(json.dumps(part, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 
     # gate 3: no third-party names or private material
     hits = []
@@ -146,6 +123,20 @@ def main(argv=None):
                 if f.is_file():
                     z.write(f, Path(name) / f.relative_to(root))
         print(f"zip: {zp.relative_to(REPO)}  {zp.stat().st_size / 1e6:.1f} MB")
+    if args.split_zips:
+        out = root.parent / f"{name}_split"
+        if out.exists():
+            shutil.rmtree(out)
+        out.mkdir()
+        parts = {f"LUTs - {sub.name}": sub for sub in sorted((root / "LUTs").iterdir())}
+        parts["Previews"] = root / "Previews"
+        for title, folder in parts.items():
+            zp = out / f"CINERA_VOL_01 - {title}.zip"
+            with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+                for f in sorted(folder.rglob("*")):
+                    if f.is_file():
+                        z.write(f, Path(folder.name) / f.relative_to(folder))
+            print(f"zip: {zp.relative_to(REPO)}  {zp.stat().st_size / 1e6:.1f} MB")
 
 
 if __name__ == "__main__":
