@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "erick-color-lab"
+version = "0.1.0"
+description = "ERICK COLOR LAB — color science engine and LUT baking toolkit used to build the CINÉRA cinematic LUT collections (by Erick Filmes)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary — see LICENSE.md" }
+authors = [{ name = "Erick Filmes" }]
+dependencies = [
+  "numpy>=1.24",
+  "colour-science>=0.4.4",
+  "Pillow>=10",
+  "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+validation = ["opencolorio>=2.3", "pytest>=7"]
+dev = ["opencolorio>=2.3", "pytest>=7"]
+
+[tool.setuptools.packages.find]
+where = ["color-engine"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--import-mode=importlib -q"
+pythonpath = ["color-engine"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::RuntimeWarning:colour.*"]

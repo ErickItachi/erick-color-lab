@@ -1,0 +1,60 @@
+# ---------------------------------------------------------------------------
+# ERICK COLOR LAB — .gitignore
+# ---------------------------------------------------------------------------
+# PRIVATE / THIRD-PARTY MATERIAL — NEVER COMMIT
+# Any third-party LUT pack used only as a study reference (e.g. FJR material)
+# must stay outside the repository or inside these ignored folders.
+private/
+reference-private/
+third-party/
+**/*FJR*
+**/*fjr*
+**/*La Creme*
+**/*La_Creme*
+**/*la-creme*
+**/*.drx
+**/*.xmp
+**/*.dng
+**/*.dcp
+
+# Client / personal footage used for local look tests (licensing + privacy).
+test-media/*
+!test-media/README.md
+
+# ---------------------------------------------------------------------------
+# BUILD ARTIFACTS
+# Commercial LUT files are reproducible build outputs (scripts/build_luts.py).
+# They are not committed: the repository is public and the files are the
+# commercial product. The manifest (checksums) and reports ARE committed.
+exports/**/*.cube
+exports/**/*.zip
+dist/
+build/
+release/
+
+# Large preview renders (keep the small committed contact sheets / reports)
+previews/**/*_full.png
+previews/**/*.exr
+previews/**/*.tif
+
+# ---------------------------------------------------------------------------
+# Python / tooling
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
