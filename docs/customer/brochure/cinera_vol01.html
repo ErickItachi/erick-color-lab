@@ -1,0 +1,225 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>CINÉRA VOL. 01 — Guia</title>
+<style>
+@font-face{font-family:"T";src:url("fonts/Outfit-VF.ttf");font-weight:100 900}
+@font-face{font-family:"I";src:url("fonts/InterTight-VF.ttf");font-weight:100 900}
+@page{size:1600px 900px;margin:0}
+:root{--azul:#1554D6;--creme:#EEEAE1;--preto:#121212}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"I",sans-serif;color:var(--preto)}
+section{width:1600px;height:900px;padding:80px 96px;position:relative;overflow:hidden;page-break-after:always}
+.azul{background:var(--azul);color:var(--creme)} .creme{background:var(--creme);color:var(--preto)}
+.azul-t{color:var(--azul)}
+.leg{font:500 14px "I";letter-spacing:.18em;text-transform:uppercase;display:block}
+h1,h2,h3{font-family:"T";font-weight:700;letter-spacing:-.02em;text-transform:lowercase}
+.big{font-size:88px;line-height:.92;margin:14px 0 36px}
+h3{font-size:30px;line-height:1;margin-bottom:10px}
+p{font-size:21px;line-height:1.5} .txt p+p{margin-top:16px}
+.mega{font-size:330px;line-height:.8;margin-top:120px;letter-spacing:-.04em}
+.capa .topo{display:flex;justify-content:space-between;align-items:center}
+.wm{height:46px}
+.capa .vol{display:flex;gap:40px;margin-top:40px}
+.xadrez{position:absolute;left:96px;right:96px;bottom:70px;height:96px;display:flex;flex-direction:column}
+.xadrez div{display:flex;flex:1} .xadrez i{flex:1}
+.xadrez.xcreme .f{background:var(--creme)} .xadrez.xazul .f{background:var(--azul)} .xadrez .v{background:transparent}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:40px}
+.cols.c2{grid-template-columns:1fr 1.15fr;margin-top:0} .cols.eq{grid-template-columns:1fr 1fr}
+.assin{margin-top:40px}
+figure img{width:100%;display:block;border-radius:4px}
+figcaption{font-size:16px;margin-top:10px;opacity:.9}
+.par{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.par img{height:470px;object-fit:cover}
+.cinco{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.cinco img{height:330px;object-fit:cover} .cinco figcaption{font-family:"T";font-size:24px;text-transform:lowercase}
+.nota{font-size:16px;margin-top:28px;opacity:.75}
+.look{display:grid;grid-template-columns:520px 1fr;gap:64px;align-items:center}
+.look .big{font-size:110px} .desc{font-size:24px;margin-bottom:28px} .uso{margin:8px 0 34px}
+.look .hero img{height:740px;object-fit:cover} .look .mini{width:240px} .look .mini img{height:160px;object-fit:cover}
+.tres{display:grid;grid-template-columns:repeat(3,1fr);gap:26px} .tres img{height:470px;object-fit:cover}
+.tres figcaption{font-size:18px} .tres b,.cinco b{font-family:"T"}
+.lead{font-size:26px;margin:-18px 0 34px}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.card{background:#fff8;border-radius:6px;padding:26px 24px} .card h3{font-size:28px;margin:12px 0} .card p{font-size:18px}
+.azul .card{background:#ffffff14}
+.nome{display:flex;flex-wrap:wrap;gap:6px;font:600 34px "I";margin:20px 0 50px}
+.nome span{background:#ffffff1f;padding:14px 16px;border-radius:4px} .nome .hl{background:var(--creme);color:var(--azul)} .nome .hl2{background:#0d3a9e}
+.legendas{display:grid;grid-template-columns:repeat(4,1fr);gap:36px} .legendas p{font-size:19px;margin-top:10px}
+.passos{font-size:23px;line-height:1.5;padding-left:30px;max-width:1150px} .passos li{margin-bottom:14px}
+.passos.claro{font-size:20px} .eq h3{margin-top:6px}
+.dica{margin-top:26px;background:var(--azul);color:var(--creme);display:inline-block;padding:18px 24px;border-radius:6px}
+.regras{display:grid;grid-template-columns:repeat(3,1fr);gap:44px} .num{font:700 90px "T";color:var(--azul);line-height:1}
+.regras p{font-size:19px}
+table{width:100%;border-collapse:collapse;font-size:20px} th{text-align:left;font:500 14px "I";letter-spacing:.16em;text-transform:uppercase;padding:0 18px 14px 0}
+td{padding:18px 18px 18px 0;border-top:1px solid #ffffff40;vertical-align:top}
+.sim{background:#1554D61a} .nao{background:var(--preto);color:var(--creme)} .card ul{font-size:21px;line-height:1.5;padding-left:22px;margin-top:14px} .card li{margin-bottom:10px}
+.fim .mega2{font-size:130px;line-height:.92;margin-top:120px}
+.fim .rodape{position:absolute;left:96px;bottom:150px;display:flex;align-items:center;gap:26px} .fim .sym{height:60px}
+.fim .cred{position:absolute;left:96px;right:96px;bottom:60px;font-size:14px;opacity:.75}
+</style></head><body>
+
+<section class="azul capa">
+  <div class="topo"><span class="leg">the cinematic color collection</span><img class="wm" src="assets/wordmark_cream.png"></div>
+  <h1 class="mega">cinéra</h1>
+  <div class="vol"><span class="leg">VOL. 01</span><span class="leg">guia de uso</span></div>
+  <div class="xadrez xcreme"><div><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i></div><div><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i></div></div>
+</section>
+
+<section class="creme">
+  <span class="leg azul-t">o conceito</span>
+  <div class="cols"><h2 class="big azul-t">cor também<br>conta a história.</h2>
+  <div class="txt"><p>Eu criei a CINÉRA para quem filma e edita e quer chegar num visual de cinema sem virar colorista.</p>
+  <p>São cinco looks que eu uso no meu próprio trabalho. Cada um cria um clima diferente, mas todos cuidam das mesmas coisas: pele com cara de pele, céu e luzes fortes que não estouram de um jeito feio e pretos com profundidade.</p>
+  <p>Você aplica, ajusta a intensidade se quiser, e segue editando.</p>
+  <span class="leg azul-t assin">erick borborema · direção audiovisual</span></div></div>
+</section>
+
+<section class="azul">
+  <span class="leg">o básico</span>
+  <h2 class="big">o que é um lut?</h2>
+  <div class="cols c2">
+    <div class="txt"><p>LUT é um arquivo de cor (termina em <b>.cube</b>) que o seu programa de edição lê e aplica no vídeo. Pense num filtro profissional: ele transforma as cores de um jeito preciso e sempre igual.</p>
+    <p>Quando você grava em <b>Log</b>, a imagem sai lavada e cinza de propósito, porque a câmera guarda mais informação nas luzes e nas sombras. O LUT da CINÉRA faz as duas coisas de uma vez: <b>converte o Log para uma imagem normal e aplica o look</b>.</p></div>
+    <div class="par"><figure><img src="assets/kodim18_log.jpg"><figcaption>como a câmera grava (Log)</figcaption></figure>
+    <figure><img src="assets/kodim18_signature_standard.jpg"><figcaption>com a CINÉRA 01 signature</figcaption></figure></div>
+  </div>
+</section>
+
+<section class="creme">
+  <span class="leg azul-t">a coleção</span>
+  <h2 class="big azul-t">cinco looks. uma assinatura.</h2>
+  <div class="cinco"><figure><img src="assets/kodim12_01-signature.jpg"><figcaption><b>01</b> signature</figcaption></figure><figure><img src="assets/kodim12_02-golden.jpg"><figcaption><b>02</b> golden</figcaption></figure><figure><img src="assets/kodim12_03-olive.jpg"><figcaption><b>03</b> olive</figcaption></figure><figure><img src="assets/kodim12_04-blue-hour.jpg"><figcaption><b>04</b> blue hour</figcaption></figure><figure><img src="assets/kodim12_05-romance.jpg"><figcaption><b>05</b> romance</figcaption></figure></div>
+  <p class="nota">Mesma cena, cinco looks. Exemplos feitos com os próprios arquivos da coleção.</p>
+</section>
+
+<section class="azul look">
+  <div class="info"><span class="leg ">look 01</span><h2 class="big ">signature</h2>
+  <p class="desc">a minha assinatura. contraste de cinema na medida, pele natural, pretos profundos sem perder detalhe e cores elegantes, sem exagero.</p><span class="leg ">ideal para</span><p class="uso">uso geral, institucional, eventos, documentário. o look "da casa".</p>
+  <figure class="mini"><img src="assets/kodim04_log.jpg"><figcaption>antes (Log)</figcaption></figure></div>
+  <figure class="hero"><img src="assets/kodim04_01-signature.jpg"></figure>
+</section>
+
+<section class="creme look">
+  <div class="info"><span class="leg azul-t">look 02</span><h2 class="big azul-t">golden</h2>
+  <p class="desc">quente, nostálgico e romântico. altas luzes douradas, sombras quentes e transições suaves.</p><span class="leg azul-t">ideal para</span><p class="uso">golden hour, casamento, pré-wedding, lifestyle.</p>
+  <figure class="mini"><img src="assets/kodim12_log.jpg"><figcaption>antes (Log)</figcaption></figure></div>
+  <figure class="hero"><img src="assets/kodim12_02-golden.jpg"></figure>
+</section>
+
+<section class="azul look">
+  <div class="info"><span class="leg ">look 03</span><h2 class="big ">olive</h2>
+  <p class="desc">orgânico e documental. verdes oliva, cores terrosas, amarelos controlados e contraste natural.</p><span class="leg ">ideal para</span><p class="uso">documentário, natureza, viagem, marcas com estética orgânica.</p>
+  <figure class="mini"><img src="assets/kodim13_log.jpg"><figcaption>antes (Log)</figcaption></figure></div>
+  <figure class="hero"><img src="assets/kodim13_03-olive.jpg"></figure>
+</section>
+
+<section class="creme look">
+  <div class="info"><span class="leg azul-t">look 04</span><h2 class="big azul-t">blue hour</h2>
+  <p class="desc">frio, dramático e elegante. sombras azuladas e azuis profundos, sem deixar a pele azul.</p><span class="leg azul-t">ideal para</span><p class="uso">fim de tarde, noite, urbano, moda, narrativas dramáticas.</p>
+  <figure class="mini"><img src="assets/kodim22_log.jpg"><figcaption>antes (Log)</figcaption></figure></div>
+  <figure class="hero"><img src="assets/kodim22_04-blue-hour.jpg"></figure>
+</section>
+
+<section class="azul look">
+  <div class="info"><span class="leg ">look 05</span><h2 class="big ">romance</h2>
+  <p class="desc">suave e delicado. contraste leve, altas macias, pele bonita e um toque de matte nos pretos.</p><span class="leg ">ideal para</span><p class="uso">casamento, retrato, beleza, conteúdos delicados.</p>
+  <figure class="mini"><img src="assets/kodim15_log.jpg"><figcaption>antes (Log)</figcaption></figure></div>
+  <figure class="hero"><img src="assets/kodim15_05-romance.jpg"></figure>
+</section>
+
+<section class="azul">
+  <span class="leg">três intensidades</span>
+  <h2 class="big">soft, standard, rich.</h2>
+  <div class="tres">
+    <figure><img src="assets/kodim18_signature_soft.jpg"><figcaption><b>soft</b> mais suave: menos contraste, cor mais leve.</figcaption></figure>
+    <figure><img src="assets/kodim18_signature_standard.jpg"><figcaption><b>standard</b> a versão principal. comece por aqui.</figcaption></figure>
+    <figure><img src="assets/kodim18_signature_rich.jpg"><figcaption><b>rich</b> mais contraste, pretos mais fundos, cores mais separadas.</figcaption></figure>
+  </div>
+</section>
+
+<section class="creme">
+  <span class="leg azul-t">passo 1</span>
+  <h2 class="big azul-t">qual pasta eu uso?</h2>
+  <p class="lead">depende só de <b>como você gravou</b>.</p>
+  <div class="cards"><div class="card"><span class="leg azul-t">Sony</span><h3>gravo em S-Log3</h3><p>pasta <b>Sony S-Log3</b>. Confira na câmera se o gamut é S-Gamut3.Cine ou S-Gamut3 e use o arquivo com o mesmo nome.</p></div><div class="card"><span class="leg azul-t">iPhone</span><h3>gravo em Apple Log</h3><p>pasta <b>Apple Log</b> (iPhone 15 Pro em diante, com Apple Log ligado).</p></div><div class="card"><span class="leg azul-t">Canon</span><h3>gravo em Canon Log 3</h3><p>pasta <b>Canon Log 3</b>.</p></div><div class="card"><span class="leg azul-t">Normal</span><h3>não gravo em Log</h3><p>pasta <b>Rec709</b>. Serve para vídeo comum de câmera, celular ou drone, e para vídeo que já foi convertido.</p></div><div class="card"><span class="leg azul-t">ACES</span><h3>sou colorista e uso ACES</h3><p>pasta <b>Creative Only (ACEScct)</b>. Se você não sabe o que é ACES, não é para você e está tudo bem.</p></div></div>
+</section>
+
+<section class="azul">
+  <span class="leg">passo 2</span>
+  <h2 class="big">lendo o nome do arquivo.</h2>
+  <div class="nome"><span>CINERA</span><span class="hl">01_SIGNATURE</span><span class="hl2">STANDARD</span><span>SLOG3_SGAMUT3CINE</span><span>TO_REC709</span><span class="hl2">65</span></div>
+  <div class="legendas">
+    <div><span class="leg">look</span><p>01 signature, 02 golden, 03 olive, 04 blue hour, 05 romance</p></div>
+    <div><span class="leg">intensidade</span><p>soft, standard ou rich</p></div>
+    <div><span class="leg">entrada → saída</span><p>de que câmera vem e para onde vai. Aqui: S-Log3 da Sony para vídeo normal (Rec.709).</p></div>
+    <div><span class="leg">tamanho</span><p><b>65</b> é o mais preciso e o que eu recomendo. <b>33</b> existe para programas ou aparelhos que não aceitam o 65.</p></div>
+  </div>
+</section>
+
+<section class="creme">
+  <span class="leg azul-t">instalação</span>
+  <h2 class="big azul-t">davinci resolve</h2>
+  <ol class="passos">
+    <li>Abra <b>Project Settings → Color Management → Lookup Tables → Open LUT Folder</b>.</li>
+    <li>Copie a pasta <b>LUTs</b> da CINÉRA para dentro dessa pasta.</li>
+    <li>Clique em <b>Update Lists</b>, ou feche e abra o Resolve.</li>
+    <li>Clique com o botão direito no clip → <b>Clip Attributes → Data Levels: Auto</b>.</li>
+    <li>Na aba <b>Color</b>, crie dois nós. No primeiro você acerta exposição e branco. No segundo, botão direito → <b>LUT → CINERA</b> → escolha o arquivo.</li>
+  </ol>
+  <p class="dica"><b>dica:</b> para deixar o look mais leve, abaixe o <b>Key Output Gain</b> do nó do LUT (na aba Key).</p>
+</section>
+
+<section class="azul">
+  <span class="leg">instalação</span>
+  <h2 class="big">premiere pro e final cut</h2>
+  <div class="cols c2 eq">
+    <div class="txt"><h3>premiere pro</h3><ol class="passos claro">
+      <li>Selecione o clip e abra o painel <b>Lumetri Color</b>.</li>
+      <li>Gravou em Log: <b>Basic Correction → Input LUT → Browse</b> e escolha o arquivo da sua câmera.</li>
+      <li>Vídeo normal: <b>Creative → Look → Browse</b> e escolha um arquivo da pasta Rec709.</li>
+      <li>Se o Premiere já estiver convertendo o Log sozinho, desligue essa conversão automática para esse clip.</li></ol></div>
+    <div class="txt"><h3>final cut pro</h3><ol class="passos claro">
+      <li>Aplique o efeito <b>Custom LUT</b> no clip.</li>
+      <li>Em <b>LUT</b>, escolha o arquivo <b>.cube</b>.</li>
+      <li>Gravou em Log: desligue a conversão automática de Log do Final Cut para esse clip.</li></ol>
+      <h3>outros programas</h3><p>Qualquer programa que aceite arquivos <b>.cube</b> funciona do mesmo jeito.</p></div>
+  </div>
+</section>
+
+<section class="creme">
+  <span class="leg azul-t">antes de aplicar</span>
+  <h2 class="big azul-t">três regras de ouro.</h2>
+  <div class="regras">
+    <div><span class="num">1</span><h3>exposição e branco primeiro.</h3><p>O LUT parte do princípio de que a imagem está bem exposta e com o branco certo. Acerte isso antes, no nó ou no ajuste anterior ao LUT.</p></div>
+    <div><span class="num">2</span><h3>uma conversão só.</h3><p>O LUT de câmera já transforma o Log em imagem normal. Não use junto outra conversão (outro LUT de câmera ou a conversão automática do programa).</p></div>
+    <div><span class="num">3</span><h3>a pasta certa.</h3><p>Sony com Sony, iPhone com Apple Log, Canon com Canon. Vídeo normal sempre na pasta Rec709.</p></div>
+  </div>
+  <div class="xadrez xazul"><div><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i></div><div><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i><i class="v"></i><i class="f"></i></div></div>
+</section>
+
+<section class="azul">
+  <span class="leg">ajuda rápida</span>
+  <h2 class="big">deu algo estranho?</h2>
+  <table><tr><th>o que aconteceu</th><th>por quê</th><th>como resolver</th></tr><tr><td><b>ficou contrastado e saturado demais</b></td><td>a conversão do Log foi feita duas vezes</td><td>desligue a conversão automática do programa, ou use a pasta Rec709</td></tr><tr><td><b>ficou lavado, com o preto acinzentado</b></td><td>Data Levels do clip em Full</td><td>Clip Attributes → Data Levels: Auto</td></tr><tr><td><b>a cor ficou bem estranha</b></td><td>pasta ou gamut errado</td><td>confira como a câmera gravou (ex.: S-Gamut3.Cine × S-Gamut3)</td></tr><tr><td><b>o look está forte demais</b></td><td>é só intensidade</td><td>use a versão SOFT ou abaixe a força do nó do LUT</td></tr><tr><td><b>o LUT não aparece na lista</b></td><td>o programa ainda não leu a pasta</td><td>Update Lists, ou feche e abra o programa</td></tr></table>
+</section>
+
+<section class="creme">
+  <span class="leg azul-t">licença em 1 minuto</span>
+  <h2 class="big azul-t">o que pode e o que não pode.</h2>
+  <div class="cols c2 eq">
+    <div class="card sim"><span class="leg azul-t">pode</span><ul>
+      <li>usar em todos os seus projetos, pessoais e de clientes, inclusive comerciais;</li>
+      <li>instalar nos computadores que você ou a sua empresa usam;</li>
+      <li>entregar os vídeos prontos para os clientes à vontade.</li></ul></div>
+    <div class="card nao"><span class="leg">não pode</span><ul>
+      <li>revender, compartilhar ou mandar os arquivos para outras pessoas;</li>
+      <li>colocar os LUTs (originais ou modificados) em outros pacotes ou produtos;</li>
+      <li>criar LUTs a partir destes para vender ou distribuir.</li></ul></div>
+  </div>
+  <p class="nota">O texto completo está no documento "Licença de Uso", que vem junto com a coleção.</p>
+</section>
+
+<section class="azul fim">
+  <h2 class="mega2">me conta o que<br>você está imaginando.</h2>
+  <div class="rodape"><img class="sym" src="assets/symbol_cream.png"><img class="wm" src="assets/wordmark_cream.png"></div>
+  <p class="cred">Imagens de exemplo: Kodak True Color Image Suite (uso irrestrito), com o sinal de câmera simulado e os LUTs da coleção aplicados. O resultado no seu material depende de exposição, balanço de branco e câmera.</p>
+</section>
+</body></html>
