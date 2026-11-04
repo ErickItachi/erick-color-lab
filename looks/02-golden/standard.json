@@ -1,0 +1,175 @@
+{
+  "schema": "erick-color-lab/look@1",
+  "collection": "cinera-vol-01",
+  "look_id": "02-golden",
+  "number": "02",
+  "name": "Golden",
+  "variant": "standard",
+  "version": "1.0.0",
+  "description": "Warm, nostalgic and romantic. Golden highlights, natural warm tones, deep warm shadows and soft transitions. Made for golden hour and weddings.",
+  "parameters": {
+    "white_balance": {
+      "warmth": 0.14,
+      "tint": -0.01
+    },
+    "black_offset": -0.001,
+    "color_matrix": [
+      [
+        0.975,
+        0.02,
+        0.005
+      ],
+      [
+        0.01,
+        0.975,
+        0.015
+      ],
+      [
+        0.0,
+        0.04,
+        0.96
+      ]
+    ],
+    "contrast": {
+      "amount": 1.05,
+      "pivot": 0.4136,
+      "hue_preservation": 0.85
+    },
+    "tonal_balance": {
+      "shadows": [
+        0.003,
+        0.0,
+        -0.004
+      ],
+      "midtones": [
+        0.002,
+        0.001,
+        -0.003
+      ],
+      "highlights": [
+        0.01,
+        0.005,
+        -0.012
+      ]
+    },
+    "curves": {
+      "master": [
+        [
+          0.0729,
+          0.0729
+        ],
+        [
+          0.22,
+          0.215
+        ],
+        [
+          0.4136,
+          0.42
+        ],
+        [
+          0.75,
+          0.745
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ]
+    },
+    "highlight_compression": {
+      "threshold": 0.58,
+      "strength": 2.6
+    },
+    "color_separation": {
+      "amount": 3.0,
+      "axis_hue": 60.0
+    },
+    "hue_vs_hue": [
+      [
+        23,
+        4
+      ],
+      [
+        60,
+        0
+      ],
+      [
+        95,
+        -6
+      ],
+      [
+        140,
+        -12
+      ],
+      [
+        200,
+        -8
+      ],
+      [
+        250,
+        -4
+      ],
+      [
+        320,
+        0
+      ]
+    ],
+    "hue_vs_sat": [
+      [
+        23,
+        1.0
+      ],
+      [
+        60,
+        1.02
+      ],
+      [
+        95,
+        0.95
+      ],
+      [
+        140,
+        0.8
+      ],
+      [
+        200,
+        0.78
+      ],
+      [
+        250,
+        0.8
+      ],
+      [
+        320,
+        0.9
+      ]
+    ],
+    "hue_vs_lum": [
+      [
+        95,
+        1.02
+      ],
+      [
+        140,
+        0.95
+      ],
+      [
+        250,
+        0.92
+      ]
+    ],
+    "saturation": {
+      "global": 0.97,
+      "shadows": 0.9,
+      "highlights": 0.92,
+      "chroma_knee": 0.27,
+      "chroma_limit": 0.42
+    },
+    "skin": {
+      "protect": 0.85,
+      "hue_center": 47.0,
+      "hue_width": 16.0,
+      "pull": 0.4
+    }
+  }
+}

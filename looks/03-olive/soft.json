@@ -1,0 +1,175 @@
+{
+  "schema": "erick-color-lab/look@1",
+  "collection": "cinera-vol-01",
+  "look_id": "03-olive",
+  "number": "03",
+  "name": "Olive",
+  "variant": "soft",
+  "version": "1.0.0",
+  "description": "SOFT \u2014 Organic, documentary identity. Discreet olive greens, earthy colours, controlled yellows and natural contrast. Softer variant: about half the contrast deviation, lighter tints, softer highlight shoulder, a touch of matte and calmer saturation.",
+  "parameters": {
+    "white_balance": {
+      "warmth": 0.03,
+      "tint": 0.03
+    },
+    "black_offset": 0.0004,
+    "color_matrix": [
+      [
+        0.965,
+        0.03,
+        0.005
+      ],
+      [
+        0.02,
+        0.96,
+        0.02
+      ],
+      [
+        0.01,
+        0.05,
+        0.94
+      ]
+    ],
+    "contrast": {
+      "amount": 1.005,
+      "pivot": 0.4136,
+      "hue_preservation": 0.5
+    },
+    "tonal_balance": {
+      "shadows": [
+        -0.0008,
+        0.0023,
+        -0.0015
+      ],
+      "midtones": [
+        0.0008,
+        0.0008,
+        -0.0015
+      ],
+      "highlights": [
+        0.003,
+        0.0023,
+        -0.0045
+      ]
+    },
+    "curves": {
+      "master": [
+        [
+          0.0729,
+          0.0729
+        ],
+        [
+          0.2,
+          0.198
+        ],
+        [
+          0.4136,
+          0.4136
+        ],
+        [
+          0.8,
+          0.79
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ]
+    },
+    "highlight_compression": {
+      "threshold": 0.6,
+      "strength": 2.08
+    },
+    "color_separation": {
+      "amount": 1.2,
+      "axis_hue": 55.0
+    },
+    "hue_vs_hue": [
+      [
+        23,
+        6
+      ],
+      [
+        60,
+        0
+      ],
+      [
+        95,
+        -6
+      ],
+      [
+        140,
+        -16
+      ],
+      [
+        190,
+        -10
+      ],
+      [
+        250,
+        0
+      ],
+      [
+        320,
+        6
+      ]
+    ],
+    "hue_vs_sat": [
+      [
+        23,
+        0.904
+      ],
+      [
+        60,
+        0.96
+      ],
+      [
+        95,
+        0.856
+      ],
+      [
+        140,
+        0.76
+      ],
+      [
+        190,
+        0.776
+      ],
+      [
+        250,
+        0.88
+      ],
+      [
+        320,
+        0.84
+      ]
+    ],
+    "hue_vs_lum": [
+      [
+        95,
+        0.97
+      ],
+      [
+        140,
+        0.92
+      ],
+      [
+        250,
+        0.98
+      ]
+    ],
+    "saturation": {
+      "global": 0.874,
+      "shadows": 0.835,
+      "highlights": 0.8275,
+      "chroma_knee": 0.228,
+      "chroma_limit": 0.342
+    },
+    "skin": {
+      "protect": 0.7,
+      "hue_center": 45.0,
+      "hue_width": 16.0,
+      "pull": 0.2
+    }
+  }
+}

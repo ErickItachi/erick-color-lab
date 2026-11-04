@@ -1,0 +1,175 @@
+{
+  "schema": "erick-color-lab/look@1",
+  "collection": "cinera-vol-01",
+  "look_id": "05-romance",
+  "number": "05",
+  "name": "Romance",
+  "variant": "rich",
+  "version": "1.0.0",
+  "description": "RICH \u2014 Soft, delicate and sophisticated. Moderate contrast, gentle highlights, flattering skin tones and discreet saturation. Richer variant: stronger contrast, deeper blacks, stronger tonal colour separation and hue-specific chroma differences.",
+  "parameters": {
+    "white_balance": {
+      "warmth": 0.06,
+      "tint": -0.03
+    },
+    "black_offset": 0.0002,
+    "color_matrix": [
+      [
+        0.98,
+        0.015,
+        0.005
+      ],
+      [
+        0.01,
+        0.98,
+        0.01
+      ],
+      [
+        0.005,
+        0.02,
+        0.975
+      ]
+    ],
+    "contrast": {
+      "amount": 1.052,
+      "pivot": 0.4136,
+      "hue_preservation": 0.6
+    },
+    "tonal_balance": {
+      "shadows": [
+        0.0039,
+        0.0,
+        0.0052
+      ],
+      "midtones": [
+        0.0026,
+        0.0,
+        0.0
+      ],
+      "highlights": [
+        0.0078,
+        0.0026,
+        -0.0026
+      ]
+    },
+    "curves": {
+      "master": [
+        [
+          0.0729,
+          0.0729
+        ],
+        [
+          0.2,
+          0.21
+        ],
+        [
+          0.4136,
+          0.42
+        ],
+        [
+          0.8,
+          0.79
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ]
+    },
+    "highlight_compression": {
+      "threshold": 0.56,
+      "strength": 2.55
+    },
+    "color_separation": {
+      "amount": 2.4,
+      "axis_hue": 55.0
+    },
+    "hue_vs_hue": [
+      [
+        23,
+        -2.3
+      ],
+      [
+        60,
+        0.0
+      ],
+      [
+        95,
+        -4.6
+      ],
+      [
+        140,
+        -6.9
+      ],
+      [
+        250,
+        6.9
+      ],
+      [
+        320,
+        4.6
+      ]
+    ],
+    "hue_vs_sat": [
+      [
+        0,
+        1.0
+      ],
+      [
+        23,
+        0.94
+      ],
+      [
+        60,
+        0.976
+      ],
+      [
+        95,
+        0.784
+      ],
+      [
+        140,
+        0.736
+      ],
+      [
+        250,
+        0.82
+      ],
+      [
+        330,
+        1.024
+      ]
+    ],
+    "hue_vs_lum": [
+      [
+        95,
+        1.02
+      ],
+      [
+        140,
+        0.97
+      ],
+      [
+        250,
+        0.97
+      ],
+      [
+        330,
+        1.02
+      ]
+    ],
+    "saturation": {
+      "global": 0.936,
+      "shadows": 0.85,
+      "highlights": 0.85,
+      "chroma_knee": 0.252,
+      "chroma_limit": 0.378
+    },
+    "skin": {
+      "protect": 0.6,
+      "hue_center": 46.0,
+      "hue_width": 18.0,
+      "pull": 0.3
+    }
+  }
+}

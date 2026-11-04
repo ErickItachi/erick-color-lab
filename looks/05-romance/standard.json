@@ -1,0 +1,175 @@
+{
+  "schema": "erick-color-lab/look@1",
+  "collection": "cinera-vol-01",
+  "look_id": "05-romance",
+  "number": "05",
+  "name": "Romance",
+  "variant": "standard",
+  "version": "1.0.0",
+  "description": "Soft, delicate and sophisticated. Moderate contrast, gentle highlights, flattering skin tones and discreet saturation.",
+  "parameters": {
+    "white_balance": {
+      "warmth": 0.06,
+      "tint": -0.03
+    },
+    "black_offset": 0.0006,
+    "color_matrix": [
+      [
+        0.98,
+        0.015,
+        0.005
+      ],
+      [
+        0.01,
+        0.98,
+        0.01
+      ],
+      [
+        0.005,
+        0.02,
+        0.975
+      ]
+    ],
+    "contrast": {
+      "amount": 1.02,
+      "pivot": 0.4136,
+      "hue_preservation": 0.6
+    },
+    "tonal_balance": {
+      "shadows": [
+        0.003,
+        0.0,
+        0.004
+      ],
+      "midtones": [
+        0.002,
+        0.0,
+        0.0
+      ],
+      "highlights": [
+        0.006,
+        0.002,
+        -0.002
+      ]
+    },
+    "curves": {
+      "master": [
+        [
+          0.0729,
+          0.0729
+        ],
+        [
+          0.2,
+          0.21
+        ],
+        [
+          0.4136,
+          0.42
+        ],
+        [
+          0.8,
+          0.79
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ]
+    },
+    "highlight_compression": {
+      "threshold": 0.56,
+      "strength": 3.0
+    },
+    "color_separation": {
+      "amount": 1.5,
+      "axis_hue": 55.0
+    },
+    "hue_vs_hue": [
+      [
+        23,
+        -2
+      ],
+      [
+        60,
+        0
+      ],
+      [
+        95,
+        -4
+      ],
+      [
+        140,
+        -6
+      ],
+      [
+        250,
+        6
+      ],
+      [
+        320,
+        4
+      ]
+    ],
+    "hue_vs_sat": [
+      [
+        0,
+        1.0
+      ],
+      [
+        23,
+        0.95
+      ],
+      [
+        60,
+        0.98
+      ],
+      [
+        95,
+        0.82
+      ],
+      [
+        140,
+        0.78
+      ],
+      [
+        250,
+        0.85
+      ],
+      [
+        330,
+        1.02
+      ]
+    ],
+    "hue_vs_lum": [
+      [
+        95,
+        1.02
+      ],
+      [
+        140,
+        0.97
+      ],
+      [
+        250,
+        0.97
+      ],
+      [
+        330,
+        1.02
+      ]
+    ],
+    "saturation": {
+      "global": 0.9,
+      "shadows": 0.85,
+      "highlights": 0.85,
+      "chroma_knee": 0.24,
+      "chroma_limit": 0.36
+    },
+    "skin": {
+      "protect": 0.6,
+      "hue_center": 46.0,
+      "hue_width": 18.0,
+      "pull": 0.3
+    }
+  }
+}

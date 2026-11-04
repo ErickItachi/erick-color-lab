@@ -18,7 +18,9 @@ clipping      fraction of lattice outputs at 0 or 1, separately for the
               "picture" region of the input domain
 gamut         fraction of lattice points out of [0, 1] *before* the final
               clip (after gamut compression)
-consistency   skin-proxy hue stability across -2 / 0 / +2 EV (Oklab hue)
+consistency   skin-proxy hue stability across -2 / 0 / +2 EV (Oklab hue) of the
+              exact pipeline (look property) + CIEDE2000 LUT-vs-pipeline on
+              the skin patches (file property)
 """
 
 from __future__ import annotations
@@ -29,7 +31,7 @@ import numpy as np
 from ..interpolation.lut3d import tetrahedral, trilinear
 from ..lut_baking.cube import read_cube
 from ..transforms import colorspaces as cs
-from ..transforms.transfer import acescct_decode, bt1886_eotf
+from ..transforms.transfer import acescct_decode, acescct_encode, bt1886_eotf
 
 TOLERANCES = {
     "node_max_abs": 1e-6,               # 6-decimal quantisation is 5e-7
@@ -38,7 +40,8 @@ TOLERANCES = {
     "neutral_reversals": 0,
     "banding_max_step_10bit": 6,        # largest jump between adjacent 10-bit input codes
     "banding_reversals": 0,
-    "skin_hue_spread_deg": 8.0,         # across -2/0/+2 EV, per skin-proxy patch
+    "skin_hue_spread_deg": 8.0,         # exact pipeline, across -2/0/+2 EV, per skin-proxy patch
+    "skin_de2000_max": {33: 2.0, 65: 1.0},  # LUT vs exact pipeline, every skin-proxy patch (size-dependent like interpolation)
 }
 
 
@@ -130,8 +133,12 @@ def validate_lut(path, transform, rendering, seed: int = 7) -> dict:
         keep = np.all((sig >= 0.0) & (sig <= 1.0), axis=1)
         sig = sig[keep]
         y = tetrahedral(t, sig)
-        lum = _luma_display(y, out_kind, rendering)
-        enc = np.clip(lum, 0, 1) ** (1 / 2.4) * 1023.0
+        if out_kind == "acescct":
+            # Creative-Only: measure the LMT in its own domain (ACEScct in -> ACEScct out)
+            enc = acescct_encode(np.maximum(acescct_decode(y) @ cs.luminance_weights("ap1"), 0.0)) * 1023.0
+        else:
+            lum = _luma_display(y, out_kind, rendering)
+            enc = np.clip(lum, 0, 1) ** (1 / 2.4) * 1023.0
         d_in = np.max(np.abs(np.diff(sig, axis=0)), axis=1) * 1023.0
         d_out = np.diff(enc)
         ok = d_in > 1e-9
@@ -185,12 +192,20 @@ def validate_lut(path, transform, rendering, seed: int = 7) -> dict:
         d = np.abs((h - h[1:2] + 180) % 360 - 180).max(axis=0)[valid]
         return (float(d.max()) if d.size else 0.0), int(valid.sum()), float(np.mean(h[1][valid])) if valid.any() else 0.0
 
-    sp_lut, n_valid, mean_h = hue_spread(tetrahedral(t, sig))
-    sp_exact, _, _ = hue_spread(transform(sig))
-    chk["skin_consistency"] = {"max_hue_spread_deg": sp_lut, "exact_pipeline_spread_deg": sp_exact,
-                               "n_patches": n_valid, "mean_hue_deg": mean_h,
-                               "tolerance": TOLERANCES["skin_hue_spread_deg"],
-                               "pass": sp_lut <= TOLERANCES["skin_hue_spread_deg"]}
+    lut_out, exact_out = tetrahedral(t, sig), np.clip(transform(sig), 0, 1)
+    sp_lut, n_valid, mean_h = hue_spread(lut_out)
+    sp_exact, _, _ = hue_spread(exact_out)
+    skin_de = float(delta_e(lut_out, exact_out, out_kind, rendering).max())
+    # Look property: hue stability of the exact pipeline. File property: LUT
+    # fidelity on skin measured with CIEDE2000 (hue angle alone is
+    # ill-conditioned for low-chroma patches, so the LUT hue spread is
+    # reported for information only).
+    chk["skin_consistency"] = {"exact_pipeline_spread_deg": sp_exact, "lut_hue_spread_deg": sp_lut,
+                               "lut_vs_pipeline_de2000_max": skin_de, "n_patches": n_valid, "mean_hue_deg": mean_h,
+                               "tolerance": {"spread_deg": TOLERANCES["skin_hue_spread_deg"],
+                                             "de2000": TOLERANCES["skin_de2000_max"].get(n, 1.0)},
+                               "pass": sp_exact <= TOLERANCES["skin_hue_spread_deg"]
+                               and skin_de <= TOLERANCES["skin_de2000_max"].get(n, 1.0)}
 
     res["pass"] = all(c["pass"] for c in chk.values())
     return res

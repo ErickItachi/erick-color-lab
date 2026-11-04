@@ -32,8 +32,12 @@ L_GREY = float(np.cbrt(GREY))                     # Oklab L of an 18 % neutral
 # grey. Keeps every ratio-based mask well-conditioned near black (sensor
 # noise / sub-black codes) where C/L would otherwise diverge.
 L_FLOOR = float(np.cbrt(GREY * 2.0 ** -6))
-DEEP_SHADOW_FADE = (-7.5, -5.0)  # stops: perceptual operations fade in over this range
-BLACK_NEUTRAL_FADE = (-9.0, -6.5)  # stops: tonal-balance tints fade in over this range
+# Hue-keyed operations fade in with *absolute* Oklab chroma: hue is
+# ill-conditioned when C -> 0 (dark, low-chroma colours), so masks keyed on
+# hue would otherwise vary steeply there.
+HUE_CHROMA_FADE = (0.0, 0.03)
+DEEP_SHADOW_FADE = (-9.0, -4.5)  # stops: perceptual operations fade in over this range
+BLACK_NEUTRAL_FADE = (-10.0, -6.0)  # stops: tonal-balance tints fade in over this range
 _W_AP1 = cs.luminance_weights("ap1")
 _M_AP1_709 = cs.rgb_to_rgb_matrix("ap1", "rec709")
 _M_709_AP1 = cs.rgb_to_rgb_matrix("rec709", "ap1")
@@ -154,10 +158,13 @@ def _wrap(dh):
     return (dh + 180.0) % 360.0 - 180.0
 
 
-def skin_mask(h, ratio, center, width):
+def skin_mask(h, ratio, center, width, C=None):
     m_h = np.exp(-0.5 * (_wrap(h - center) / width) ** 2)
     m_r = smoothstep(0.015, 0.045, ratio) * (1.0 - smoothstep(0.20, 0.32, ratio))
-    return m_h * m_r
+    m = m_h * m_r
+    if C is not None:
+        m = m * smoothstep(HUE_CHROMA_FADE[0], HUE_CHROMA_FADE[1], C)
+    return m
 
 
 def skin_weight(lin_ap1, skin: dict):
@@ -165,7 +172,7 @@ def skin_weight(lin_ap1, skin: dict):
     lab = cs.rec709_linear_to_oklab(cs.apply_matrix(lin_ap1, _M_AP1_709))
     L, C, h = cs.oklab_to_lch(lab)
     ratio = C / np.maximum(L, L_FLOOR)
-    return skin_mask(h, ratio, skin["hue_center"], skin["hue_width"])
+    return skin_mask(h, ratio, skin["hue_center"], skin["hue_width"], C)
 
 
 def perceptual(lin_ap1, p: dict):
@@ -200,8 +207,9 @@ def perceptual(lin_ap1, p: dict):
         S = np.ones_like(h)
         M = np.ones_like(h)
     else:
-        w_c = smoothstep(0.01, 0.06, ratio) * w_valid  # neutrals and out-of-domain colours untouched
-        m_skin = skin_mask(h, ratio, skin["hue_center"], skin["hue_width"])
+        w_hue = smoothstep(HUE_CHROMA_FADE[0], HUE_CHROMA_FADE[1], C)
+        w_c = smoothstep(0.01, 0.06, ratio) * w_valid * w_hue  # neutrals / low chroma / out-of-domain untouched
+        m_skin = skin_mask(h, ratio, skin["hue_center"], skin["hue_width"], C)
         protect = 1.0 - skin["protect"] * m_skin
         g = w_valid  # global operations also fade out of the valid domain
 

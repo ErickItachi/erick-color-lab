@@ -55,7 +55,7 @@ def main(argv=None):
         print(f"[{i:3d}/{len(exports)}] {'PASS' if r['pass'] else 'FAIL'} {ex.filename}  "
               f"dE00 mean {tet['de2000_mean']:.3f} p99 {tet['de2000_p99']:.3f} max {tet['de2000_max']:.2f}  "
               f"band {max(c['banding'][k]['max_step_10bit'] for k in ('neutral', 'skin', 'sky')):.2f}  "
-              f"skin {c['skin_consistency']['max_hue_spread_deg']:.1f}deg")
+              f"skin {c['skin_consistency']['exact_pipeline_spread_deg']:.1f}deg dE {c['skin_consistency']['lut_vs_pipeline_de2000_max']:.2f}")
 
     n_pass = sum(r["pass"] for r in results)
     summary = {"engine": f"{ENGINE_NAME} {ENGINE_VERSION}", "collection": args.collection,
@@ -66,7 +66,7 @@ def main(argv=None):
     out.parent.mkdir(parents=True, exist_ok=True)
     out.with_suffix(".json").write_text(json.dumps({"summary": summary, "results": results}, indent=1) + "\n")
     out.with_suffix(".md").write_text(markdown(summary, results), encoding="utf-8")
-    print(f"{n_pass}/{len(results)} passed -> {out.with_suffix('.md').relative_to(REPO)}")
+    print(f"{n_pass}/{len(results)} passed -> {out.with_suffix('.md')}")
     return 0 if n_pass == len(results) else 1
 
 
@@ -76,18 +76,18 @@ def markdown(summary, results) -> str:
          "Every file below was re-imported from disk with the strict .cube reader and compared with the analytic "
          "pipeline it was baked from. ΔE = CIEDE2000 on the Rec.709 display output (Creative-Only files are "
          "evaluated through the CINÉRA Neutral Rendering). Tolerances: see `color-engine/erick_color_lab/validation/checks.py`.", "",
-         "| File | Result | node err | ΔE00 mean / p99 / max (tetra) | ΔE00 p99 (trilinear) | banding max step (10-bit) | out-of-range before clip | skin hue spread |",
-         "|---|---|---|---|---|---|---|---|"]
+         "| File | Result | node err | ΔE00 mean / p99 / max (tetra) | ΔE00 p99 (trilinear) | banding max gain (codes/code) | out-of-range before clip | skin hue spread (pipeline) | skin ΔE00 max (LUT) |",
+         "|---|---|---|---|---|---|---|---|---|"]
     for r in results:
         if "checks" not in r:
-            L.append(f"| `{Path(r['file']).name}` | **FAIL** ({r.get('error')}) | | | | | | |")
+            L.append(f"| `{Path(r['file']).name}` | **FAIL** ({r.get('error')}) | | | | | | | |")
             continue
         c = r["checks"]
         tet, tri = c["interpolation"]["tetrahedral"], c["interpolation"]["trilinear"]
         band = max(c["banding"][k]["max_step_10bit"] for k in ("neutral", "skin", "sky"))
         L.append(f"| `{Path(r['file']).name}` | {'PASS' if r['pass'] else '**FAIL**'} | {c['precision']['node_max_abs']:.1e} | "
                  f"{tet['de2000_mean']:.3f} / {tet['de2000_p99']:.3f} / {tet['de2000_max']:.2f} | {tri['de2000_p99']:.3f} | "
-                 f"{band:.2f} | {100 * c['gamut']['out_of_range_fraction']:.1f}% | {c['skin_consistency']['max_hue_spread_deg']:.1f}° |")
+                 f"{band:.2f} | {100 * c['gamut']['out_of_range_fraction']:.1f}% | {c['skin_consistency']['exact_pipeline_spread_deg']:.1f}° | {c['skin_consistency']['lut_vs_pipeline_de2000_max']:.2f} |")
     failing = [r for r in results if not r["pass"]]
     if failing:
         L += ["", "## Failures", ""]

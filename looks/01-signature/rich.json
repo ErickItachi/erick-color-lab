@@ -1,0 +1,171 @@
+{
+  "schema": "erick-color-lab/look@1",
+  "collection": "cinera-vol-01",
+  "look_id": "01-signature",
+  "number": "01",
+  "name": "Signature",
+  "variant": "rich",
+  "version": "1.0.0",
+  "description": "RICH \u2014 The CINERA signature: balanced cinematic contrast, natural skin, rich but open blacks, delicate highlights and restrained, sophisticated saturation. Subtle warm/cool separation, greens nudged toward olive and calmed. Richer variant: stronger contrast, deeper blacks, stronger tonal colour separation and hue-specific chroma differences.",
+  "parameters": {
+    "white_balance": {
+      "warmth": 0.04,
+      "tint": -0.01
+    },
+    "black_offset": -0.0032,
+    "color_matrix": [
+      [
+        0.97,
+        0.02,
+        0.01
+      ],
+      [
+        0.015,
+        0.97,
+        0.015
+      ],
+      [
+        0.005,
+        0.035,
+        0.96
+      ]
+    ],
+    "contrast": {
+      "amount": 1.132,
+      "pivot": 0.4136,
+      "hue_preservation": 0.6
+    },
+    "tonal_balance": {
+      "shadows": [
+        -0.0052,
+        0.0,
+        0.0078
+      ],
+      "midtones": [
+        0.0013,
+        0.0,
+        -0.0013
+      ],
+      "highlights": [
+        0.0078,
+        0.0026,
+        -0.0078
+      ]
+    },
+    "curves": {
+      "master": [
+        [
+          0.0729,
+          0.0729
+        ],
+        [
+          0.2,
+          0.192
+        ],
+        [
+          0.4136,
+          0.4136
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ]
+    },
+    "highlight_compression": {
+      "threshold": 0.62,
+      "strength": 1.7
+    },
+    "color_separation": {
+      "amount": 6.4,
+      "axis_hue": 55.0
+    },
+    "hue_vs_hue": [
+      [
+        23,
+        2.3
+      ],
+      [
+        55,
+        0.0
+      ],
+      [
+        95,
+        -4.6
+      ],
+      [
+        140,
+        -9.2
+      ],
+      [
+        190,
+        0.0
+      ],
+      [
+        250,
+        3.45
+      ],
+      [
+        320,
+        0.0
+      ]
+    ],
+    "hue_vs_sat": [
+      [
+        23,
+        0.964
+      ],
+      [
+        55,
+        1.0
+      ],
+      [
+        95,
+        0.94
+      ],
+      [
+        140,
+        0.784
+      ],
+      [
+        190,
+        0.88
+      ],
+      [
+        250,
+        0.94
+      ],
+      [
+        320,
+        0.88
+      ]
+    ],
+    "hue_vs_lum": [
+      [
+        55,
+        1.0
+      ],
+      [
+        140,
+        0.95
+      ],
+      [
+        250,
+        0.96
+      ]
+    ],
+    "saturation": {
+      "global": 0.9984,
+      "shadows": 0.88,
+      "highlights": 0.88,
+      "chroma_knee": 0.273,
+      "chroma_limit": 0.42
+    },
+    "skin": {
+      "protect": 0.7,
+      "hue_center": 45.0,
+      "hue_width": 16.0,
+      "pull": 0.25
+    }
+  }
+}

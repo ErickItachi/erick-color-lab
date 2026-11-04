@@ -1,0 +1,175 @@
+{
+  "schema": "erick-color-lab/look@1",
+  "collection": "cinera-vol-01",
+  "look_id": "04-blue-hour",
+  "number": "04",
+  "name": "Blue Hour",
+  "variant": "rich",
+  "version": "1.0.0",
+  "description": "RICH \u2014 Cold, dramatic and elegant. Bluish shadows, deep blues, relatively neutral highlights and preserved skin. Richer variant: stronger contrast, deeper blacks, stronger tonal colour separation and hue-specific chroma differences.",
+  "parameters": {
+    "white_balance": {
+      "warmth": -0.14,
+      "tint": 0.0
+    },
+    "black_offset": -0.0037,
+    "color_matrix": [
+      [
+        0.96,
+        0.03,
+        0.01
+      ],
+      [
+        0.01,
+        0.97,
+        0.02
+      ],
+      [
+        0.0,
+        0.02,
+        0.98
+      ]
+    ],
+    "contrast": {
+      "amount": 1.18,
+      "pivot": 0.4136,
+      "hue_preservation": 0.6
+    },
+    "tonal_balance": {
+      "shadows": [
+        -0.0104,
+        -0.0013,
+        0.0156
+      ],
+      "midtones": [
+        -0.0026,
+        0.0,
+        0.0026
+      ],
+      "highlights": [
+        0.0078,
+        0.0039,
+        -0.0052
+      ]
+    },
+    "curves": {
+      "master": [
+        [
+          0.0729,
+          0.0729
+        ],
+        [
+          0.2,
+          0.19
+        ],
+        [
+          0.4136,
+          0.41
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ]
+    },
+    "highlight_compression": {
+      "threshold": 0.63,
+      "strength": 1.53
+    },
+    "color_separation": {
+      "amount": 8.0,
+      "axis_hue": 55.0
+    },
+    "hue_vs_hue": [
+      [
+        23,
+        2.3
+      ],
+      [
+        60,
+        0.0
+      ],
+      [
+        95,
+        4.6
+      ],
+      [
+        140,
+        16.1
+      ],
+      [
+        200,
+        6.9
+      ],
+      [
+        250,
+        4.6
+      ],
+      [
+        320,
+        -6.9
+      ]
+    ],
+    "hue_vs_sat": [
+      [
+        23,
+        0.94
+      ],
+      [
+        60,
+        0.976
+      ],
+      [
+        95,
+        0.7
+      ],
+      [
+        140,
+        0.7
+      ],
+      [
+        200,
+        0.94
+      ],
+      [
+        250,
+        1.096
+      ],
+      [
+        320,
+        0.82
+      ]
+    ],
+    "hue_vs_lum": [
+      [
+        95,
+        0.96
+      ],
+      [
+        140,
+        0.92
+      ],
+      [
+        200,
+        0.92
+      ],
+      [
+        250,
+        0.86
+      ]
+    ],
+    "saturation": {
+      "global": 0.9672,
+      "shadows": 0.92,
+      "highlights": 0.8,
+      "chroma_knee": 0.2835,
+      "chroma_limit": 0.441
+    },
+    "skin": {
+      "protect": 0.75,
+      "hue_center": 44.0,
+      "hue_width": 24.0,
+      "pull": 0.25
+    }
+  }
+}
