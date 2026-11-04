@@ -1,0 +1,26 @@
+{
+  "schema": "erick-color-lab/profile@1",
+  "id": "rec709_bt1886",
+  "label": "Rec.709 / BT.1886 (display-referred video)",
+  "kind": "display_rec709",
+  "transfer": "bt1886",
+  "gamut": "rec709",
+  "file_token": "REC709",
+  "export_folder": "rec709",
+  "signal": {
+    "range": "video",
+    "notes": "Nominal 0..1 Rec.709 signal as presented by the host (video levels 64-940 -> 0..1)."
+  },
+  "application": "Footage recorded or already converted to Rec.709 (BT.709 primaries, viewed on a BT.1886 gamma 2.4 display). The LUT maps the image back to scene values through the inverse of the CINERA Neutral Rendering, applies the look and re-renders. A neutral look is an identity.",
+  "verification": {
+    "status": "verified-by-test",
+    "tests": [
+      "tests/color-science/test_rendering.py::test_rec709_roundtrip_identity"
+    ]
+  },
+  "references": [
+    "ITU-R BT.709-6",
+    "ITU-R BT.1886"
+  ],
+  "enabled": true
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "erick-color-lab/profile@1",
+  "id": "clog3_cinemagamut",
+  "label": "Canon Log 3 / Cinema Gamut",
+  "kind": "camera_log",
+  "transfer": "canon_log3",
+  "gamut": "cinema_gamut",
+  "file_token": "CLOG3_CINEMAGAMUT",
+  "export_folder": "canon-log3",
+  "signal": {
+    "range": "video",
+    "bit_depth": 10,
+    "notes": "Canon Log 3 v1.2 constants (expressed as CV/1023). Host presents video range as 0..1."
+  },
+  "verification": {
+    "status": "verified-by-test",
+    "reference_implementation": "OpenColorIO 2.x builtin CANON_CLOG3-CGAMUT_to_ACES2065-1 and colour-science",
+    "tests": [
+      "tests/color-science/test_camera_profiles.py"
+    ]
+  },
+  "references": [
+    "Canon, Canon Log Gamma Curves - Canon Log, Canon Log 2, Canon Log 3 (v1.2)"
+  ],
+  "enabled": true
+}

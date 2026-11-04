@@ -1,0 +1,28 @@
+{
+  "schema": "erick-color-lab/profile@1",
+  "id": "acescct_ap1",
+  "label": "ACEScct / AP1 (creative working space)",
+  "kind": "working_space",
+  "transfer": "acescct",
+  "gamut": "ap1",
+  "file_token": "ACESCCT",
+  "export_folder": "creative-only",
+  "output": "acescct",
+  "signal": {
+    "range": "float",
+    "notes": "ACEScct floating point values (0.0729 = scene black, 0.4136 = 18% grey). No data-level remapping."
+  },
+  "application": "Creative Only (ACES-style Look Modification Transform). Place after a CST/IDT to ACEScct and before the output transform (ACEScct -> Rec.709). No technical conversion is baked in.",
+  "verification": {
+    "status": "verified-by-test",
+    "reference_implementation": "OpenColorIO 2.x builtin ACEScct_to_ACES2065-1",
+    "tests": [
+      "tests/color-science/test_camera_profiles.py::test_acescct_curve_matches_ocio"
+    ]
+  },
+  "references": [
+    "Academy S-2016-001 ACEScct",
+    "Academy S-2014-004 ACEScg (AP1)"
+  ],
+  "enabled": true
+}

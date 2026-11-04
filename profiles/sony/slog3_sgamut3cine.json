@@ -1,0 +1,26 @@
+{
+  "schema": "erick-color-lab/profile@1",
+  "id": "slog3_sgamut3cine",
+  "label": "Sony S-Log3 / S-Gamut3.Cine",
+  "kind": "camera_log",
+  "transfer": "sony_slog3",
+  "gamut": "sgamut3cine",
+  "file_token": "SLOG3_SGAMUT3CINE",
+  "export_folder": "sony-slog3",
+  "signal": {
+    "range": "video",
+    "bit_depth": 10,
+    "notes": "Host presents CV 64..940 as 0..1 (Resolve clip Data Levels = Auto/Video; Premiere default). Formula domain CV/1023: 18% grey = 420 CV."
+  },
+  "verification": {
+    "status": "verified-by-test",
+    "reference_implementation": "OpenColorIO 2.x builtin SONY_SLOG3-SGAMUT3.CINE_to_ACES2065-1 and colour-science",
+    "tests": [
+      "tests/color-science/test_camera_profiles.py"
+    ]
+  },
+  "references": [
+    "Sony, Technical Summary for S-Gamut3.Cine/S-Log3 and S-Gamut3/S-Log3 (2014)"
+  ],
+  "enabled": true
+}
