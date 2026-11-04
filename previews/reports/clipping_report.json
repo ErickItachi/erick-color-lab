@@ -1,0 +1,902 @@
+[
+ {
+  "file": "CINERA_01_SIGNATURE_RICH_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "01-signature",
+  "variant": "rich",
+  "white_clip_pct": 2.1552748967474056,
+  "black_clip_pct": 3.883053348092327,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_RICH_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "01-signature",
+  "variant": "rich",
+  "white_clip_pct": 0.8087004580431527,
+  "black_clip_pct": 3.554912430148026,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_RICH_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "01-signature",
+  "variant": "rich",
+  "white_clip_pct": 0.9611190801977034,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_RICH_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "01-signature",
+  "variant": "rich",
+  "white_clip_pct": 1.8126479114082505,
+  "black_clip_pct": 4.9436854130025045,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_RICH_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "01-signature",
+  "variant": "rich",
+  "white_clip_pct": 2.064579518275276,
+  "black_clip_pct": 3.554912430148026,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_RICH_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "01-signature",
+  "variant": "rich",
+  "white_clip_pct": 1.827763807820272,
+  "black_clip_pct": 3.883053348092327,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_SOFT_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "01-signature",
+  "variant": "soft",
+  "white_clip_pct": 0.4805595400988517,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_SOFT_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "01-signature",
+  "variant": "soft",
+  "white_clip_pct": 0.40435022902157636,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_SOFT_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "01-signature",
+  "variant": "soft",
+  "white_clip_pct": 0.4805595400988517,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_SOFT_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "01-signature",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_SOFT_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "01-signature",
+  "variant": "soft",
+  "white_clip_pct": 0.40435022902157636,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_SOFT_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "01-signature",
+  "variant": "soft",
+  "white_clip_pct": 0.40435022902157636,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_STANDARD_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "01-signature",
+  "variant": "standard",
+  "white_clip_pct": 1.3289392262235609,
+  "black_clip_pct": 2.8986305942594237,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_STANDARD_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "01-signature",
+  "variant": "standard",
+  "white_clip_pct": 0.7324911469658775,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_STANDARD_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "01-signature",
+  "variant": "standard",
+  "white_clip_pct": 0.884909769120428,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_STANDARD_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "01-signature",
+  "variant": "standard",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.6562818358886021,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_STANDARD_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "01-signature",
+  "variant": "standard",
+  "white_clip_pct": 1.213050687064729,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_01_SIGNATURE_STANDARD_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "01-signature",
+  "variant": "standard",
+  "white_clip_pct": 1.213050687064729,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_RICH_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "02-golden",
+  "variant": "rich",
+  "white_clip_pct": 1.213050687064729,
+  "black_clip_pct": 3.226771512203724,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_RICH_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "02-golden",
+  "variant": "rich",
+  "white_clip_pct": 0.7324911469658775,
+  "black_clip_pct": 3.226771512203724,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_RICH_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "02-golden",
+  "variant": "rich",
+  "white_clip_pct": 0.884909769120428,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_RICH_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "02-golden",
+  "variant": "rich",
+  "white_clip_pct": 0.8087004580431527,
+  "black_clip_pct": 3.554912430148026,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_02_GOLDEN_RICH_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "02-golden",
+  "variant": "rich",
+  "white_clip_pct": 1.213050687064729,
+  "black_clip_pct": 3.226771512203724,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_RICH_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "02-golden",
+  "variant": "rich",
+  "white_clip_pct": 1.213050687064729,
+  "black_clip_pct": 2.8986305942594237,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_SOFT_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "02-golden",
+  "variant": "soft",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_SOFT_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "02-golden",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_SOFT_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "02-golden",
+  "variant": "soft",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_SOFT_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "02-golden",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_02_GOLDEN_SOFT_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "02-golden",
+  "variant": "soft",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_SOFT_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "02-golden",
+  "variant": "soft",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_STANDARD_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "02-golden",
+  "variant": "standard",
+  "white_clip_pct": 0.8087004580431527,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_STANDARD_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "02-golden",
+  "variant": "standard",
+  "white_clip_pct": 0.7324911469658775,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_STANDARD_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "02-golden",
+  "variant": "standard",
+  "white_clip_pct": 0.8087004580431527,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_STANDARD_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "02-golden",
+  "variant": "standard",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_02_GOLDEN_STANDARD_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "02-golden",
+  "variant": "standard",
+  "white_clip_pct": 0.7324911469658775,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_02_GOLDEN_STANDARD_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "02-golden",
+  "variant": "standard",
+  "white_clip_pct": 0.7324911469658775,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_RICH_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "03-olive",
+  "variant": "rich",
+  "white_clip_pct": 0.8578271213822227,
+  "black_clip_pct": 2.8986305942594237,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_RICH_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "03-olive",
+  "variant": "rich",
+  "white_clip_pct": 0.32814091794430106,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_RICH_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "03-olive",
+  "variant": "rich",
+  "white_clip_pct": 0.40435022902157636,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_RICH_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "03-olive",
+  "variant": "rich",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.6562818358886021,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_03_OLIVE_RICH_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "03-olive",
+  "variant": "rich",
+  "white_clip_pct": 0.40435022902157636,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_RICH_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "03-olive",
+  "variant": "rich",
+  "white_clip_pct": 0.40435022902157636,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_SOFT_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "03-olive",
+  "variant": "soft",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_SOFT_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "03-olive",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_SOFT_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "03-olive",
+  "variant": "soft",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_SOFT_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "03-olive",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_03_OLIVE_SOFT_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "03-olive",
+  "variant": "soft",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_SOFT_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "03-olive",
+  "variant": "soft",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_STANDARD_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "03-olive",
+  "variant": "standard",
+  "white_clip_pct": 0.32814091794430106,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_STANDARD_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "03-olive",
+  "variant": "standard",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_STANDARD_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "03-olive",
+  "variant": "standard",
+  "white_clip_pct": 0.32814091794430106,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_STANDARD_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "03-olive",
+  "variant": "standard",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_03_OLIVE_STANDARD_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "03-olive",
+  "variant": "standard",
+  "white_clip_pct": 0.32814091794430106,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_03_OLIVE_STANDARD_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "03-olive",
+  "variant": "standard",
+  "white_clip_pct": 0.32814091794430106,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_RICH_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "04-blue-hour",
+  "variant": "rich",
+  "white_clip_pct": 2.4531840218676635,
+  "black_clip_pct": 4.539335183980929,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_RICH_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "04-blue-hour",
+  "variant": "rich",
+  "white_clip_pct": 0.40435022902157636,
+  "black_clip_pct": 4.211194266036627,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_RICH_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "04-blue-hour",
+  "variant": "rich",
+  "white_clip_pct": 0.6329781622534022,
+  "black_clip_pct": 2.8986305942594237,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_RICH_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "04-blue-hour",
+  "variant": "rich",
+  "white_clip_pct": 1.3308287132750638,
+  "black_clip_pct": 9.428697844252731,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_RICH_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "04-blue-hour",
+  "variant": "rich",
+  "white_clip_pct": 2.3618588143783663,
+  "black_clip_pct": 4.539335183980929,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_RICH_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "04-blue-hour",
+  "variant": "rich",
+  "white_clip_pct": 2.4330294933183017,
+  "black_clip_pct": 4.539335183980929,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_SOFT_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "04-blue-hour",
+  "variant": "soft",
+  "white_clip_pct": 0.32814091794430106,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_SOFT_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "04-blue-hour",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_SOFT_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "04-blue-hour",
+  "variant": "soft",
+  "white_clip_pct": 0.32814091794430106,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_SOFT_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "04-blue-hour",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 1.1680179123372483,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_SOFT_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "04-blue-hour",
+  "variant": "soft",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_SOFT_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "04-blue-hour",
+  "variant": "soft",
+  "white_clip_pct": 0.32814091794430106,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_STANDARD_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "04-blue-hour",
+  "variant": "standard",
+  "white_clip_pct": 1.0146545466569463,
+  "black_clip_pct": 2.8986305942594237,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_STANDARD_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "04-blue-hour",
+  "variant": "standard",
+  "white_clip_pct": 0.40435022902157636,
+  "black_clip_pct": 2.8986305942594237,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_STANDARD_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "04-blue-hour",
+  "variant": "standard",
+  "white_clip_pct": 0.4805595400988517,
+  "black_clip_pct": 0.32814091794430106,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_STANDARD_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "04-blue-hour",
+  "variant": "standard",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 6.291676966995386,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_STANDARD_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "04-blue-hour",
+  "variant": "standard",
+  "white_clip_pct": 0.4805595400988517,
+  "black_clip_pct": 2.8986305942594237,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_04_BLUEHOUR_STANDARD_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "04-blue-hour",
+  "variant": "standard",
+  "white_clip_pct": 0.4805595400988517,
+  "black_clip_pct": 2.8986305942594237,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_RICH_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "05-romance",
+  "variant": "rich",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_RICH_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "05-romance",
+  "variant": "rich",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_RICH_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "05-romance",
+  "variant": "rich",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_RICH_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "05-romance",
+  "variant": "rich",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_05_ROMANCE_RICH_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "05-romance",
+  "variant": "rich",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_RICH_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "05-romance",
+  "variant": "rich",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_SOFT_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "05-romance",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_SOFT_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "05-romance",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_SOFT_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "05-romance",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_SOFT_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "05-romance",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_05_ROMANCE_SOFT_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "05-romance",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_SOFT_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "05-romance",
+  "variant": "soft",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_STANDARD_ACESCCT_TO_ACESCCT_65.cube",
+  "profile": "acescct_ap1",
+  "look": "05-romance",
+  "variant": "standard",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_STANDARD_APPLELOG_BT2020_TO_REC709_65.cube",
+  "profile": "applelog_bt2020",
+  "look": "05-romance",
+  "variant": "standard",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 0.7324911469658775,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_STANDARD_CLOG3_CINEMAGAMUT_TO_REC709_65.cube",
+  "profile": "clog3_cinemagamut",
+  "look": "05-romance",
+  "variant": "standard",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 1.1368413759874538,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_STANDARD_REC709_TO_REC709_65.cube",
+  "profile": "rec709_bt1886",
+  "look": "05-romance",
+  "variant": "standard",
+  "white_clip_pct": 0.0,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 6.018331173544662
+ },
+ {
+  "file": "CINERA_05_ROMANCE_STANDARD_SLOG3_SGAMUT3_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3",
+  "look": "05-romance",
+  "variant": "standard",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ },
+ {
+  "file": "CINERA_05_ROMANCE_STANDARD_SLOG3_SGAMUT3CINE_TO_REC709_65.cube",
+  "profile": "slog3_sgamut3cine",
+  "look": "05-romance",
+  "variant": "standard",
+  "white_clip_pct": 0.25193160686702576,
+  "black_clip_pct": 0.0,
+  "neutral_white_clip_pct": 2.513017778498582,
+  "neutral_black_clip_pct": 0.0
+ }
+]

@@ -1,0 +1,26 @@
+{
+ "ACEScct / AP1 (creative working space)": {
+  "mean_de2000_vs_slog3cine": 0.040932514773119016,
+  "p95": 0.13393306579128988
+ },
+ "Apple Log / BT.2020 (iPhone 15 Pro and later)": {
+  "mean_de2000_vs_slog3cine": 0.020182169632917676,
+  "p95": 0.08227650170196368
+ },
+ "Canon Log 3 / Cinema Gamut": {
+  "mean_de2000_vs_slog3cine": 0.03323381699330774,
+  "p95": 0.11619805244597049
+ },
+ "Rec.709 / BT.1886 (display-referred video)": {
+  "mean_de2000_vs_slog3cine": 0.3089678128640585,
+  "p95": 2.8308051804574057
+ },
+ "Sony S-Log3 / S-Gamut3": {
+  "mean_de2000_vs_slog3cine": 0.014588065564052807,
+  "p95": 0.043531242310058
+ },
+ "Sony S-Log3 / S-Gamut3.Cine": {
+  "mean_de2000_vs_slog3cine": 0.0,
+  "p95": 0.0
+ }
+}
