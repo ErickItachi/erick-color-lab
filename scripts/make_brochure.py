@@ -27,7 +27,7 @@ from erick_color_lab.lut_baking.cube import read_cube  # noqa: E402
 
 B = REPO / "docs/customer/brochure"
 A = B / "assets"
-KODAK = REPO / "test-media/kodak"
+PHOTOS = REPO / "test-media/photos"
 PDF = REPO / "release/CINERA_VOL_01_Guia.pdf"
 REF = "slog3_sgamut3cine"
 
@@ -46,7 +46,14 @@ def render_assets():
     prof = ex[("01-signature", "standard", REF)].profile
 
     def photo(pid):
-        return np.asarray(Image.open(KODAK / f"{pid}.png").convert("RGB"), dtype=np.float64) / 255.0
+        im = Image.open(PHOTOS / f"{pid}.png").convert("RGB")
+        w, h = im.size
+        if w > h:  # cinema crop for landscape frames
+            nh = round(w / 2.39)
+            if nh < h:
+                im = im.crop((0, (h - nh) // 2, w, (h - nh) // 2 + nh))
+        im.thumbnail((1500, 1500), Image.LANCZOS)
+        return np.asarray(im, dtype=np.float64) / 255.0
 
     def log_of(img):
         return np.clip(prof.from_scene_ap1(rendering.inverse(img.reshape(-1, 3))), 0, 1).reshape(img.shape)
@@ -57,18 +64,18 @@ def render_assets():
     def graded(sig, look, variant="standard"):
         return tetrahedral(lut(look, variant), sig.reshape(-1, 3)).reshape(sig.shape)
 
-    heroes = {"01-signature": "kodim04", "02-golden": "kodim12", "03-olive": "kodim13",
-              "04-blue-hour": "kodim22", "05-romance": "kodim15"}
+    heroes = {"01-signature": "p_stairs", "02-golden": "p_field", "03-olive": "p_door",
+              "04-blue-hour": "p_red_night", "05-romance": "p_family_white"}
     logs = {}
-    for pid in set(heroes.values()) | {"kodim18"}:
+    for pid in set(heroes.values()) | {"p_celebration"}:
         logs[pid] = log_of(photo(pid))
         save(logs[pid], f"{pid}_log")
     for look, pid in heroes.items():
         save(graded(logs[pid], look), f"{pid}_{look}")
     for look in heroes:
-        save(graded(logs["kodim12"], look), f"kodim12_{look}")
+        save(graded(logs["p_celebration"], look), f"p_celebration_{look}")
     for v in ("soft", "standard", "rich"):
-        save(graded(logs["kodim18"], "01-signature", v), f"kodim18_signature_{v}")
+        save(graded(logs["p_field"], "01-signature", v), f"p_field_signature_{v}")
 
 
 def checker(cls="", n=10):
@@ -77,20 +84,22 @@ def checker(cls="", n=10):
     return f'<div class="xadrez {cls}"><div>{cells}</div><div>{cells2}</div></div>'
 
 
+HERO_POS = {"p_red_night": "35% 0%"}
+
 LOOKS = [
-    ("01", "signature", "01-signature", "kodim04",
+    ("01", "signature", "01-signature", "p_stairs",
      "a minha assinatura. contraste de cinema na medida, pele natural, pretos profundos sem perder detalhe e cores elegantes, sem exagero.",
      "uso geral, institucional, eventos, documentário. o look \"da casa\"."),
-    ("02", "golden", "02-golden", "kodim12",
+    ("02", "golden", "02-golden", "p_field",
      "quente, nostálgico e romântico. altas luzes douradas, sombras quentes e transições suaves.",
      "golden hour, casamento, pré-wedding, lifestyle."),
-    ("03", "olive", "03-olive", "kodim13",
+    ("03", "olive", "03-olive", "p_door",
      "orgânico e documental. verdes oliva, cores terrosas, amarelos controlados e contraste natural.",
      "documentário, natureza, viagem, marcas com estética orgânica."),
-    ("04", "blue hour", "04-blue-hour", "kodim22",
+    ("04", "blue hour", "04-blue-hour", "p_red_night",
      "frio, dramático e elegante. sombras azuladas e azuis profundos, sem deixar a pele azul.",
      "fim de tarde, noite, urbano, moda, narrativas dramáticas."),
-    ("05", "romance", "05-romance", "kodim15",
+    ("05", "romance", "05-romance", "p_family_white",
      "suave e delicado. contraste leve, altas macias, pele bonita e um toque de matte nos pretos.",
      "casamento, retrato, beleza, conteúdos delicados."),
 ]
@@ -124,12 +133,12 @@ def html() -> str:
   <div class="cols c2">
     <div class="txt"><p>LUT é um arquivo de cor (termina em <b>.cube</b>) que o seu programa de edição lê e aplica no vídeo. Pense num filtro profissional: ele transforma as cores de um jeito preciso e sempre igual.</p>
     <p>Quando você grava em <b>Log</b>, a imagem sai lavada e cinza de propósito, porque a câmera guarda mais informação nas luzes e nas sombras. O LUT da CINÉRA faz as duas coisas de uma vez: <b>converte o Log para uma imagem normal e aplica o look</b>.</p></div>
-    <div class="par"><figure><img src="assets/kodim18_log.jpg"><figcaption>como a câmera grava (Log)</figcaption></figure>
-    <figure><img src="assets/kodim18_signature_standard.jpg"><figcaption>com a CINÉRA 01 signature</figcaption></figure></div>
+    <div class="par"><figure><img src="assets/p_stairs_log.jpg"><figcaption>como a câmera grava (Log)</figcaption></figure>
+    <figure><img src="assets/p_stairs_01-signature.jpg"><figcaption>com a CINÉRA 01 signature</figcaption></figure></div>
   </div>
 </section>""")
     # 4 visão geral
-    thumbs = "".join(f'<figure><img src="assets/kodim12_{lid}.jpg"><figcaption><b>{n}</b> {name}</figcaption></figure>' for n, name, lid, *_ in LOOKS)
+    thumbs = "".join(f'<figure><img src="assets/p_celebration_{lid}.jpg"><figcaption><b>{n}</b> {name}</figcaption></figure>' for n, name, lid, *_ in LOOKS)
     pages.append(f"""
 <section class="creme">
   <span class="leg azul-t">a coleção</span>
@@ -146,7 +155,7 @@ def html() -> str:
   <div class="info"><span class="leg {t}">look {n}</span><h2 class="big {t}">{name}</h2>
   <p class="desc">{desc}</p><span class="leg {t}">ideal para</span><p class="uso">{uso}</p>
   <figure class="mini"><img src="assets/{pid}_log.jpg"><figcaption>antes (Log)</figcaption></figure></div>
-  <figure class="hero"><img src="assets/{pid}_{lid}.jpg"></figure>
+  <figure class="hero"><img src="assets/{pid}_{lid}.jpg" style="object-position:{HERO_POS.get(pid, '50% 18%')}"></figure>
 </section>""")
     # 10 intensidades
     pages.append(f"""
@@ -154,9 +163,9 @@ def html() -> str:
   <span class="leg">três intensidades</span>
   <h2 class="big">soft, standard, rich.</h2>
   <div class="tres">
-    <figure><img src="assets/kodim18_signature_soft.jpg"><figcaption><b>soft</b> mais suave: menos contraste, cor mais leve.</figcaption></figure>
-    <figure><img src="assets/kodim18_signature_standard.jpg"><figcaption><b>standard</b> a versão principal. comece por aqui.</figcaption></figure>
-    <figure><img src="assets/kodim18_signature_rich.jpg"><figcaption><b>rich</b> mais contraste, pretos mais fundos, cores mais separadas.</figcaption></figure>
+    <figure><img src="assets/p_field_signature_soft.jpg"><figcaption><b>soft</b> mais suave: menos contraste, cor mais leve.</figcaption></figure>
+    <figure><img src="assets/p_field_signature_standard.jpg"><figcaption><b>standard</b> a versão principal. comece por aqui.</figcaption></figure>
+    <figure><img src="assets/p_field_signature_rich.jpg"><figcaption><b>rich</b> mais contraste, pretos mais fundos, cores mais separadas.</figcaption></figure>
   </div>
 </section>""")
     # 11 qual pasta
@@ -269,7 +278,7 @@ def html() -> str:
 <section class="azul fim">
   <h2 class="mega2">me conta o que<br>você está imaginando.</h2>
   <div class="rodape"><img class="sym" src="assets/symbol_cream.png"><img class="wm" src="assets/wordmark_cream.png"></div>
-  <p class="cred">Imagens de exemplo: Kodak True Color Image Suite (uso irrestrito), com o sinal de câmera simulado e os LUTs da coleção aplicados. O resultado no seu material depende de exposição, balanço de branco e câmera.</p>
+  <p class="cred">Fotos de exemplo: Unsplash e Pexels (Prime Cinematics, Jessica Rockowitz, tkirkgoz, dauphotographer, Ron Lach, cottonbro studio), com o sinal de câmera simulado e os LUTs da coleção aplicados, sem retoque depois do LUT. O resultado no seu material depende de exposição, balanço de branco e câmera.</p>
 </section>""")
 
     body = "\n".join(pages)
@@ -302,14 +311,14 @@ p{{font-size:21px;line-height:1.5}} .txt p+p{{margin-top:16px}}
 figure img{{width:100%;display:block;border-radius:4px}}
 figcaption{{font-size:16px;margin-top:10px;opacity:.9}}
 .par{{display:grid;grid-template-columns:1fr 1fr;gap:20px}}
-.par img{{height:470px;object-fit:cover}}
+.par img{{height:470px;object-fit:cover;object-position:50% 15%}}
 .cinco{{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}}
 .cinco img{{height:330px;object-fit:cover}} .cinco figcaption{{font-family:"T";font-size:24px;text-transform:lowercase}}
 .nota{{font-size:16px;margin-top:28px;opacity:.75}}
 .look{{display:grid;grid-template-columns:520px 1fr;gap:64px;align-items:center}}
 .look .big{{font-size:110px}} .desc{{font-size:24px;margin-bottom:28px}} .uso{{margin:8px 0 34px}}
-.look .hero img{{height:740px;object-fit:cover}} .look .mini{{width:240px}} .look .mini img{{height:160px;object-fit:cover}}
-.tres{{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}} .tres img{{height:470px;object-fit:cover}}
+.look .hero img{{height:740px;object-fit:cover;object-position:50% 18%}} .look .mini{{width:240px}} .look .mini img{{height:160px;object-fit:cover}}
+.tres{{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}} .tres img{{height:420px;object-fit:cover}}
 .tres figcaption{{font-size:18px}} .tres b,.cinco b{{font-family:"T"}}
 .lead{{font-size:26px;margin:-18px 0 34px}}
 .cards{{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}}

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Photo previews: real photographs through every input profile + exported LUT.
 
-Source images: Kodak Lossless True Color Image Suite (released by Eastman
-Kodak for unrestricted use), fetched from a GitHub mirror into
-test-media/kodak/ (git-ignored).
+Source images: Unsplash / Pexels photographs (free commercial use under the
+Unsplash and Pexels licences), stored in test-media/photos/ (git-ignored);
+credits in previews/photo-tests/CREDITOS.md. Landscape frames are shown in a
+2.39:1 cinema crop.
 
 For each photo and each profile:
   photo (Rec.709 display)
@@ -19,7 +20,6 @@ Rec.709 profile: the photo is used directly as the Rec.709 input.
 from __future__ import annotations
 
 import sys
-import urllib.request
 from pathlib import Path
 
 import numpy as np
@@ -35,16 +35,18 @@ from erick_color_lab.interpolation.lut3d import tetrahedral  # noqa: E402
 from erick_color_lab.lut_baking.cube import read_cube  # noqa: E402
 from erick_color_lab.transforms.transfer import acescct_decode, acescct_encode  # noqa: E402
 
-MIRROR = "https://media.githubusercontent.com/media/lamco-admin/lamcogaussianimage/main/test-data/kodak-dataset/"
-PHOTOS = {  # id: description
-    "kodim04": "retrato · pele clara",
-    "kodim15": "retrato · pele escura",
-    "kodim18": "retrato · pele escura, verde",
-    "kodim12": "casal · praia",
-    "kodim13": "natureza · rio e montanha",
-    "kodim22": "paisagem · verdes e vermelho",
+PHOTOS = {  # id: (description, photographer / source)
+    "p_stairs": ("retrato · pele escura", "Prime Cinematics (Pexels)"),
+    "p_field": ("família · campo, fim de tarde", "Jessica Rockowitz (Unsplash)"),
+    "p_door": ("documental · interior", "tkirkgoz (Pexels)"),
+    "p_red_night": ("noite · vestido vermelho", "dauphotographer (Pexels)"),
+    "p_family_white": ("família · festa ao ar livre", "Ron Lach (Pexels)"),
+    "p_celebration": ("celebração · luzes", "cottonbro studio (Pexels)"),
+    "p_forest": ("natureza · neblina", "Guy Bowden (Unsplash)"),
+    "p_ocean": ("pôr do sol · mar", "Gontran Isnard (Unsplash)"),
+    "p_rain_street": ("cidade · chuva", "Nikhil (Pexels)"),
 }
-SRC = REPO / "test-media/kodak"
+SRC = REPO / "test-media/photos"
 OUT = REPO / "previews/photo-tests"
 CELL_H = 300
 FONT = Path(matplotlib.get_data_path()) / "fonts/ttf/DejaVuSans.ttf"
@@ -56,16 +58,20 @@ LOOKS = ["01-signature", "02-golden", "03-olive", "04-blue-hour", "05-romance"]
 
 
 def fetch():
-    SRC.mkdir(parents=True, exist_ok=True)
-    for pid in PHOTOS:
-        p = SRC / f"{pid}.png"
-        if not p.exists():
-            urllib.request.urlretrieve(MIRROR + f"{pid}.png", p)
-        Image.open(p).verify()
+    missing = [pid for pid in PHOTOS if not (SRC / f"{pid}.png").exists()]
+    if missing:
+        sys.exit(f"missing photos in {SRC}: {missing}")
 
 
-def load(pid):
+def load(pid, max_side=1200):
     im = Image.open(SRC / f"{pid}.png").convert("RGB")
+    w, h = im.size
+    if w > h:  # cinema crop for landscape frames
+        nh = round(w / 2.39)
+        if nh < h:
+            top = (h - nh) // 2
+            im = im.crop((0, top, w, top + nh))
+    im.thumbnail((max_side, max_side), Image.LANCZOS)
     return np.asarray(im, dtype=np.float64) / 255.0
 
 
@@ -143,13 +149,13 @@ def main():
         return out.reshape(sig.shape)
 
     OUT.mkdir(parents=True, exist_ok=True)
-    note = "Fotos: Kodak True Color Image Suite (uso irrestrito). Sinal de câmera SIMULADO a partir da foto; LUT exportado (65³) aplicado no final."
+    note = "Fotos: Unsplash / Pexels (licenças de uso livre). Sinal de câmera SIMULADO a partir da foto; LUT exportado (65³) aplicado no final, sem retoque depois do LUT."
     written = []
     # 1) one sheet per profile: signal | 5 looks (standard)
     for pid_prof in PROFILES:
         prof = ex[("01-signature", "standard", pid_prof)].profile
         rows = []
-        for pid, desc in PHOTOS.items():
+        for pid, (desc, _) in PHOTOS.items():
             sig = signal(pid, prof)
             label = "entrada Rec.709 (original)" if prof.kind == "display_rec709" else f"sinal {prof.file_token} (simulado)"
             cells = [cap(to_img(sig), label)]
@@ -165,7 +171,7 @@ def main():
     # 2) one sheet per look: original | soft | standard | rich (S-Log3 / S-Gamut3.Cine chain)
     for lid in LOOKS:
         rows = []
-        for pid, desc in PHOTOS.items():
+        for pid, (desc, _) in PHOTOS.items():
             cells = [cap(to_img(photos[pid]), "original")]
             for v in ("soft", "standard", "rich"):
                 e = ex[(lid, v, "slog3_sgamut3cine")]
@@ -177,11 +183,12 @@ def main():
         p = OUT / f"CINERA_FOTOS_{e.look.number}_{e.look.name.upper().replace(' ', '')}_variacoes.jpg"
         img.save(p, quality=90)
         written.append(p)
+    credits = "\n".join(f"- {d} — foto: {c}" for d, c in PHOTOS.values())
     (OUT / "CREDITOS.md").write_text(
-        "# Créditos das fotos\n\nKodak Lossless True Color Image Suite (Eastman Kodak), liberada pela Kodak para uso irrestrito. "
-        f"Imagens usadas: {', '.join(PHOTOS)}.\n\nO sinal de câmera (S-Log3, Apple Log, Canon Log 3, ACEScct) foi **simulado** a partir de cada foto "
-        "(inversa exata do CINÉRA Neutral Rendering seguida da codificação do perfil). Não é footage gravada por essas câmeras.\n",
-        encoding="utf-8")
+        "# Créditos das fotos\n\nFotos do Unsplash e do Pexels, usadas sob as licenças Unsplash / Pexels (uso comercial livre).\n\n"
+        + credits + "\n\nO sinal de câmera (S-Log3, Apple Log, Canon Log 3, ACEScct) foi **simulado** a partir de cada foto "
+        "(inversa exata do CINÉRA Neutral Rendering seguida da codificação do perfil). Não é footage gravada por essas câmeras. "
+        "Nenhum ajuste foi feito depois do LUT.\n", encoding="utf-8")
     for p in written:
         print(p.relative_to(REPO))
 
